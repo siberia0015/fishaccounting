@@ -4,109 +4,110 @@
     android:id="@+id/activity_short_message"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.fzu.xyjz.RegisterActivity">
+
     <TextView
-        android:text="请输入手机号："
+        android:id="@+id/phoneLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/phoneLabel"
+        android:gravity="center_horizontal"
+        android:text="请输入手机号："
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="30sp"
-        android:gravity="center_horizontal"/>
+        android:textSize="30sp" />
 
     <EditText
+        android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:shadowColor="@color/cardview_dark_background"
-        android:id="@+id/phone"
-        android:textSize="30sp"
         android:layout_below="@+id/phoneLabel"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:shadowColor="@color/cardview_dark_background"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/goBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="返回"
-        android:textSize="30sp"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:text="返回"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/tryRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="注册"
-        android:textSize="30sp"
         android:layout_above="@+id/goBack"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:text="注册"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/getVerificationCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="点击获取验证码"
-        android:textSize="30sp"
         android:layout_above="@+id/tryRegister"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:text="点击获取验证码"
+        android:textSize="30sp" />
 
     <TextView
-        android:text="设置密码："
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/setPassword"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="30sp"
-        android:gravity="center_horizontal"
-        android:layout_below="@+id/phone"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:shadowColor="@color/cardview_dark_background"
-        android:id="@+id/password"
-        android:inputType="textPassword"
-        android:textSize="30sp"
-        android:layout_below="@+id/setPassword"
+        android:layout_below="@+id/phone"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:gravity="center_horizontal"
+        android:text="设置密码："
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/setPassword"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:shadowColor="@color/cardview_dark_background"
+        android:textSize="30sp" />
 
     <TextView
-        android:text="请输入验证码："
+        android:id="@+id/confirmCodeLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/confirmCodeLabel"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="30sp"
-        android:gravity="center_horizontal"
         android:layout_below="@+id/password"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:gravity="center_horizontal"
+        android:text="请输入验证码："
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="30sp" />
 
     <EditText
+        android:id="@+id/verificationCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:ems="10"
-        android:shadowColor="@color/cardview_dark_background"
-        android:id="@+id/verificationCode"
-        android:textSize="30sp"
         android:layout_below="@+id/confirmCodeLabel"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:ems="10"
+        android:inputType="text"
+        android:shadowColor="@color/cardview_dark_background"
+        android:textSize="30sp" />
 
 
 </RelativeLayout>
