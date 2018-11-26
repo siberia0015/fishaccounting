@@ -6,13 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.copasso.cocobill.R;
-import com.copasso.cocobill.model.bean.remote.MyUser;
-import com.copasso.cocobill.mvp.presenter.Imp.UserLogPresenterImp;
-import com.copasso.cocobill.mvp.presenter.UserLogPresenter;
-import com.copasso.cocobill.mvp.view.UserLogView;
-import com.copasso.cocobill.utils.*;
-import com.copasso.cocobill.widget.OwlView;
+import com.fishfishfish.fishaccounting.R;
 
 import butterknife.BindView;
 import butterknife.OnClick;

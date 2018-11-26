@@ -9,10 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.copasso.cocobill.R;
-import com.copasso.cocobill.common.Constants;
-import com.copasso.cocobill.utils.*;
-import com.copasso.cocobill.widget.VerifyCodeButton;
+import com.fishfishfish.fishaccounting.R;
 
 import java.io.IOException;
 import java.util.HashMap;

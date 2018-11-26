@@ -11,21 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
-import com.copasso.cocobill.R;
-import com.copasso.cocobill.common.Constants;
-import com.copasso.cocobill.model.bean.BaseBean;
-import com.copasso.cocobill.model.bean.local.BBill;
-import com.copasso.cocobill.model.bean.local.MonthDetailBean;
-import com.copasso.cocobill.model.event.SyncEvent;
-import com.copasso.cocobill.mvp.presenter.Imp.MonthDetailPresenterImp;
-import com.copasso.cocobill.mvp.presenter.MonthDetailPresenter;
-import com.copasso.cocobill.mvp.view.MonthDetailView;
-import com.copasso.cocobill.ui.activity.BillAddActivity;
-import com.copasso.cocobill.ui.activity.BillEditActivity;
-import com.copasso.cocobill.ui.adapter.MonthDetailAdapter;
-import com.copasso.cocobill.utils.DateUtils;
-import com.copasso.cocobill.utils.SnackbarUtils;
-import com.copasso.cocobill.widget.stickyheader.StickyHeaderGridLayoutManager;
+import com.fishfishfish.fishaccounting.R;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -37,10 +23,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.bmob.v3.BmobUser;
-
-import static com.copasso.cocobill.utils.DateUtils.FORMAT_M;
-import static com.copasso.cocobill.utils.DateUtils.FORMAT_Y;
 
 /**
  * 明细

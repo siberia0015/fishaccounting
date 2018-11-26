@@ -9,11 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.copasso.cocobill.model.bean.remote.MyUser;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import cn.bmob.v3.BmobUser;
 
 
 public abstract class BaseFragment extends Fragment {

@@ -8,16 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
-import com.copasso.cocobill.R;
-import com.copasso.cocobill.common.Constants;
-import com.copasso.cocobill.model.bean.local.MonthAccountBean;
-import com.copasso.cocobill.model.event.SyncEvent;
-import com.copasso.cocobill.mvp.presenter.Imp.MonthAccountPresenterImp;
-import com.copasso.cocobill.mvp.presenter.MonthAccountPresenter;
-import com.copasso.cocobill.mvp.view.MonthAccountView;
-import com.copasso.cocobill.ui.adapter.AccountCardAdapter;
-import com.copasso.cocobill.utils.DateUtils;
-import com.copasso.cocobill.utils.SnackbarUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -29,9 +19,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static com.copasso.cocobill.utils.DateUtils.FORMAT_M;
-import static com.copasso.cocobill.utils.DateUtils.FORMAT_Y;
 
 /**
  * 我的账户

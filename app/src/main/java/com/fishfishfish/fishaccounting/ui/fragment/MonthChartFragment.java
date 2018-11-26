@@ -13,16 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
-import com.copasso.cocobill.R;
-import com.copasso.cocobill.common.Constants;
-import com.copasso.cocobill.model.bean.local.MonthChartBean;
-import com.copasso.cocobill.model.event.SyncEvent;
-import com.copasso.cocobill.mvp.presenter.Imp.MonthChartPresenterImp;
-import com.copasso.cocobill.mvp.presenter.MonthChartPresenter;
-import com.copasso.cocobill.mvp.view.MonthChartView;
-import com.copasso.cocobill.ui.adapter.MonthChartAdapter;
-import com.copasso.cocobill.utils.*;
-import com.copasso.cocobill.widget.CircleImageView;
+import com.fishfishfish.fishaccounting.R;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieEntry;
@@ -41,9 +32,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static com.copasso.cocobill.utils.DateUtils.FORMAT_M;
-import static com.copasso.cocobill.utils.DateUtils.FORMAT_Y;
 
 /**
  * 类别报表

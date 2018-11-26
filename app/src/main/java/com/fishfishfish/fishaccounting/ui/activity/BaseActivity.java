@@ -19,10 +19,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.widget.Toast;
 
-import com.copasso.cocobill.model.bean.remote.MyUser;
-import com.copasso.cocobill.utils.ActivityManagerUtils;
-import com.copasso.cocobill.utils.ThemeManager;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 

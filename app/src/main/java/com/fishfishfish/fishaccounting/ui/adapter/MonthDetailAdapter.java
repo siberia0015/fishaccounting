@@ -12,19 +12,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.copasso.cocobill.R;
-import com.copasso.cocobill.model.bean.local.BBill;
-import com.copasso.cocobill.model.bean.local.MonthDetailBean;
-import com.copasso.cocobill.utils.*;
-import com.copasso.cocobill.widget.SwipeMenuView;
-import com.copasso.cocobill.widget.stickyheader.StickyHeaderGridAdapter;
-
-import java.util.List;
-
-import static com.copasso.cocobill.utils.DateUtils.FORMAT_HMS_CN;
-import static com.copasso.cocobill.utils.DateUtils.FORMAT_YMD_CN;
-
-
 public class MonthDetailAdapter extends StickyHeaderGridAdapter {
 
     private Context mContext;
