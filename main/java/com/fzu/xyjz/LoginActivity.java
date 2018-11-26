@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button smsLogin=(Button)findViewById(R.id.smsLogin);
         final Button register=(Button)findViewById(R.id.register);
         final Button forgetPW=(Button)findViewById(R.id.forgetPW);
+        final Button toBook=(Button)findViewById(R.id.toBook);
 
         Intent intent=getIntent();
         String username=intent.getStringExtra("username");
@@ -49,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password=passwordText.getText().toString();
                 if(phoneText.getText().length()!=11){
                     Toast.makeText(LoginActivity.this,"手机号格式错误！",Toast.LENGTH_SHORT).show();
-                }else if(passwordText.getText().length()<66||passwordText.getText().length()>13){
+                }else if(passwordText.getText().length()<6||passwordText.getText().length()>13){
                     Toast.makeText(LoginActivity.this,"密码长度必须在6~12位！",Toast.LENGTH_SHORT).show();
                 }else {
 
@@ -69,20 +70,6 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
-/*                    AVUser.logInInBackground(phone, password, new LogInCallback<AVUser>() {
-                        @Override
-                        public void done(AVUser avUser, AVException e) {
-                            if (e == null) {
-                                LoginActivity.this.finish();
-                                Toast.makeText(LoginActivity.this, "登陆成功！", Toast.LENGTH_SHORT).show();
-                                Intent intent=new Intent(LoginActivity.this, SecondActivity.class);
-                                intent.putExtra("username",phone);                                intent.putExtra("objectID",avUser.getObjectId());
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });*/
                 }
             }
         });
@@ -91,19 +78,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Toast.makeText(LoginActivity.this,"敬请期待！",Toast.LENGTH_SHORT).show();
-                /*final String phone=phoneText.getText().toString();
-                if(phoneText.getText().length()!=11){
-                    Toast.makeText(LoginActivity.this,"手机号格式错误！",Toast.LENGTH_SHORT).show();
-                }*//*else if() {
-
-                }*//*else {
-                    LoginActivity.this.finish();
-                    Toast.makeText(LoginActivity.this, "验证码已发送至"+phone, Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(LoginActivity.this, ShortMessageActivity.class);
-                    intent.putExtra("username",phone);
-
-                    startActivity(intent);
-                }*/
             }
         });
 

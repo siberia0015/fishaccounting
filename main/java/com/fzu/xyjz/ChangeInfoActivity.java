@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class ChangeInfoActivity extends AppCompatActivity {
 
     @Override
@@ -22,20 +25,28 @@ public class ChangeInfoActivity extends AppCompatActivity {
         final EditText sex=(EditText)findViewById(R.id.newSex);
         final EditText city=(EditText)findViewById(R.id.newCity);
         final EditText birthday=(EditText)findViewById(R.id.newBirthday);
+        final EditText email=(EditText)findViewById(R.id.newEmail);
         Button goBack=(Button)findViewById(R.id.goBack2PersonalInfo);
         Button confirmInfoChange=(Button)findViewById(R.id.confirmInfoChange);
         nickname.setText(user.getString("nickname"));
         sex.setText(user.getString("sex"));
         city.setText(user.getString("city"));
-        birthday.setText(user.getString("birthday"));
-
+        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
+        birthday.setText(simpleDateFormat.format(user.getDate("birthday")));
+        email.setText(user.getString("email"));
         confirmInfoChange.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 user.put("nickname",nickname.getText().toString());
                 user.put("sex",sex.getText().toString());
                 user.put("city",city.getText().toString());
-                user.put("birthday",birthday.getText().toString());
+                user.put("email",email.getText().toString());
+                String newBirthday=birthday.getText().toString();
+                try {
+                    user.put("birthday",simpleDateFormat.parse(newBirthday));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 user.saveInBackground();
                 Toast.makeText(ChangeInfoActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
             }

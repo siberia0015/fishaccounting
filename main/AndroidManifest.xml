@@ -41,10 +41,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".PersonalInfoActivity" />
         <activity android:name=".ChangeInfoActivity" />
-        <activity
-            android:name=".BookActivity"
-            android:label="@string/title_activity_book"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".BookActivity" />
+        <activity android:name=".becomeVIPActivity"></activity>
     </application>
 
 </manifest>

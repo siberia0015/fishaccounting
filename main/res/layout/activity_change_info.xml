@@ -14,42 +14,10 @@
         android:text="个人信息"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
+        android:textSize="20sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/personalLabel" />
-
-    <TextView
-        android:text="昵称:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:layout_below="@+id/personalLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/nicknameLabel" />
-
-    <EditText
-        android:text="abc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:layout_below="@+id/personalLabel"
-        android:layout_alignLeft="@+id/personalLabel"
-        android:layout_alignStart="@+id/personalLabel"
-        android:id="@+id/newNickname"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="性别:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:id="@+id/sexLabel"
-        android:layout_below="@+id/nicknameLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <Button
         android:text="返回"
@@ -71,56 +39,112 @@
         android:layout_alignParentStart="true"
         android:id="@+id/confirmInfoChange" />
 
-    <TextView
-        android:text="所在城市："
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:id="@+id/cityLabel"
-        android:layout_below="@+id/sexLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <EditText
         android:text="未知"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
+        android:textSize="20sp"
         android:id="@+id/newCity"
         android:layout_alignBaseline="@+id/cityLabel"
         android:layout_alignBottom="@+id/cityLabel"
         android:layout_toRightOf="@+id/birthdayLabel"
         android:layout_toEndOf="@+id/birthdayLabel" />
 
-    <TextView
-        android:text="出生日期："
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:id="@+id/birthdayLabel"
-        android:layout_below="@+id/cityLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <EditText
         android:text="未知"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:id="@+id/newSex"
-        android:layout_alignBaseline="@+id/sexLabel"
-        android:layout_alignBottom="@+id/sexLabel"
-        android:layout_toRightOf="@+id/sexLabel"
-        android:layout_toEndOf="@+id/sexLabel" />
-
-    <EditText
-        android:text="未知"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
+        android:textSize="20sp"
         android:id="@+id/newBirthday"
         android:layout_alignBaseline="@+id/birthdayLabel"
         android:layout_alignBottom="@+id/birthdayLabel"
         android:layout_toRightOf="@+id/cityLabel"
-        android:layout_toEndOf="@+id/cityLabel" />
+        android:layout_toEndOf="@+id/cityLabel"
+        android:inputType="date" />
+
+    <TextView
+        android:text="出生日期："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/birthdayLabel"
+        android:layout_below="@+id/newCity"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="所在城市："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/cityLabel"
+        android:layout_below="@+id/newSex"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="昵称:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/nicknameLabel"
+        android:layout_alignBottom="@+id/newNickname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/personalLabel" />
+
+    <TextView
+        android:text="性别:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/sexLabel"
+        android:layout_alignTop="@+id/nicknameLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp" />
+
+    <EditText
+        android:text="未知"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/newSex"
+        android:layout_alignBaseline="@+id/sexLabel"
+        android:layout_alignBottom="@+id/sexLabel"
+        android:layout_toLeftOf="@+id/newCity"
+        android:layout_toStartOf="@+id/newCity" />
+
+    <EditText
+        android:text="未知"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/newNickname"
+        android:layout_marginTop="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/newSex"
+        android:layout_alignStart="@+id/newSex" />
+
+    <TextView
+        android:text="电子邮箱："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/newEmailLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/newBirthday" />
+
+    <EditText
+        android:text="未知"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:inputType="textEmailAddress"
+        android:id="@+id/newEmail"
+        android:layout_alignBaseline="@+id/newEmailLabel"
+        android:layout_alignBottom="@+id/newEmailLabel"
+        android:layout_toRightOf="@+id/newEmailLabel"
+        android:layout_toEndOf="@+id/newEmailLabel" />
 </RelativeLayout>
