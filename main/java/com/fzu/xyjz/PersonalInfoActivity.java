@@ -42,12 +42,16 @@ public class PersonalInfoActivity extends AppCompatActivity {
         sex.setText(user.getString("sex"));
         city.setText(user.getString("city"));
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
-        birthday.setText(simpleDateFormat.format(user.getDate("birthday")));
+        if(user.getDate("birthday")!=null) {
+            birthday.setText(simpleDateFormat.format(user.getDate("birthday")));
+        }
         email.setText(user.getString("email"));
         Date date=new Date();
-        if(user.getDate("VIP_EndDate").getTime()<date.getTime()){
-            user.put("isVIP",false);
-            user.saveInBackground();
+        if(user.getDate("VIP_EndDate")!=null) {
+            if (user.getDate("VIP_EndDate").getTime() < date.getTime()) {
+                user.put("isVIP", false);
+                user.saveInBackground();
+            }
         }
         if(user.getBoolean("isVIP")==true){
             isVIP.setText("是");

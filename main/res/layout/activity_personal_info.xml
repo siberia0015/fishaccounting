@@ -142,19 +142,6 @@
         android:layout_alignStart="@+id/nickname" />
 
     <TextView
-        android:text="未知"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:id="@+id/nickname"
-        android:layout_alignBaseline="@+id/nicknameLabel"
-        android:layout_alignBottom="@+id/nicknameLabel"
-        android:layout_toLeftOf="@+id/city"
-        android:layout_toStartOf="@+id/city"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp" />
-
-    <TextView
         android:text="电子邮箱："
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -184,4 +171,15 @@
         android:layout_alignBottom="@+id/emailLabel"
         android:layout_toRightOf="@+id/birthdayLabel"
         android:layout_toEndOf="@+id/birthdayLabel" />
+
+    <TextView
+        android:text="未知"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/nickname"
+        android:layout_alignBaseline="@+id/nicknameLabel"
+        android:layout_alignBottom="@+id/nicknameLabel"
+        android:layout_toRightOf="@+id/nicknameLabel"
+        android:layout_toEndOf="@+id/nicknameLabel" />
 </RelativeLayout>

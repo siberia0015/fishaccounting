@@ -32,7 +32,9 @@ public class ChangeInfoActivity extends AppCompatActivity {
         sex.setText(user.getString("sex"));
         city.setText(user.getString("city"));
         final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
-        birthday.setText(simpleDateFormat.format(user.getDate("birthday")));
+        if(user.getDate("birthday")!=null) {
+            birthday.setText(simpleDateFormat.format(user.getDate("birthday")));
+        }
         email.setText(user.getString("email"));
         confirmInfoChange.setOnClickListener(new View.OnClickListener(){
             @Override
