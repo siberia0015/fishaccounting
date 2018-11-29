@@ -117,39 +117,11 @@ public class LoginActivity extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*AVQuery<AVObject> query = new AVQuery<>("Book");
-                query.whereEqualTo("owner", "13067468789");
-                query.deleteAllInBackground(new DeleteCallback() {
-                    @Override
-                    public void done(AVException e) {
-                        if (e != null) {
-                            // 出现错误
-                        } else {
-                            // 保存成功
-                        }
-                    }
-                });*/
-/*                query.findInBackground(new FindCallback<AVObject>() {
-                    @Override
-                    public void done(List<AVObject> list, AVException e) {
-                        ArrayList<AVObject> todos = (ArrayList<AVObject>) list;
-                        AVObject.deleteAllInBackground(todos, new DeleteCallback() {
-                            @Override
-                            public void done(AVException e) {
-                                if (e != null) {
-                                    // 出现错误
-                                } else {
-                                    // 保存成功
-                                }
-                            }
-                        });
-                    }*//*
-                });*/
                 UserBean user=new UserBean();
                 ArrayList<Integer> book_id=new ArrayList<Integer>();
-                book_id.add(0,1);
-                book_id.add(0,10);
-                book_id.add(0,11);
+                book_id.add(1);
+                book_id.add(2);
+                book_id.add(4);
                 user.combineRecordCloud(book_id,"新账簿");
                 new AlertDialog.Builder(LoginActivity.this)
                         .setTitle("测试成功")
