@@ -1,15 +1,23 @@
 package com.fishfishfish.fishaccounting.ui.activity;
 
 import android.os.Bundle;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.fishfishfish.fishaccounting.R;
+import com.fishfishfish.fishaccounting.model.bean.local.BBill;
+import com.fishfishfish.fishaccounting.model.bean.local.BPay;
+import com.fishfishfish.fishaccounting.model.bean.local.BSort;
+import com.fishfishfish.fishaccounting.model.bean.local.NoteBean;
+import com.fishfishfish.fishaccounting.mvp.presenter.Imp.BillPresenterImp;
+import com.fishfishfish.fishaccounting.utils.*;
+import com.fishfishfish.fishaccounting.mvp.view.BillView;
+import com.fishfishfish.fishaccounting.mvp.presenter.Imp.BillPresenterImp;
+import com.fishfishfish.fishaccounting.mvp.view.BillView;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
+import static com.fishfishfish.fishaccounting.utils.DateUtils.*;
 
 /**
  * 修改账单
@@ -27,7 +35,7 @@ public class BillEditActivity extends BillAddActivity implements BillView {
     @Override
     protected void initEventAndData() {
 
-        presenter = new BillPresenterImp(this);
+        presenter=new BillPresenterImp(this);
         //获取旧数据
         setOldBill();
 
@@ -88,7 +96,7 @@ public class BillEditActivity extends BillAddActivity implements BillView {
 
     @Override
     public void loadDataSuccess(NoteBean tData) {
-        noteBean = tData;
+        noteBean=tData;
         //成功后加载布局
         setTitleStatus();
     }
@@ -119,8 +127,8 @@ public class BillEditActivity extends BillAddActivity implements BillView {
         lastBean = findSortByName(bundle.getString("sortName"));
         //当前分类未查询到次账单的分类
         //存在该分类被删除的情况，以及切换账单收入支出类型
-        if (lastBean == null)
-            lastBean = mDatas.get(0);
+        if (lastBean==null)
+            lastBean=mDatas.get(0);
         sortTv.setText(lastBean.getSortName());
 
         cardItem = new ArrayList<>();
@@ -142,17 +150,17 @@ public class BillEditActivity extends BillAddActivity implements BillView {
         final SimpleDateFormat sdf = new SimpleDateFormat(" HH:mm:ss");
         final String crDate = days + sdf.format(new Date());
         if ((num + dotNum).equals("0.00")) {
-            Toast.makeText(this, "您还没输入金额", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "唔姆，你还没输入金额", Toast.LENGTH_SHORT).show();
             return;
         }
 
         ProgressUtils.show(mContext, "正在提交...");
-        presenter.update(new BBill(bundle.getLong("id"), bundle.getString("rid"),
-                Float.valueOf(num + dotNum), remarkInput, currentUser.getObjectId(),
+        presenter.update(new BBill(bundle.getLong("id"),bundle.getString("rid"),
+                Float.valueOf(num + dotNum),remarkInput,currentUser.getObjectId(),
                 noteBean.getPayinfo().get(selectedPayinfoIndex).getPayName(),
                 noteBean.getPayinfo().get(selectedPayinfoIndex).getPayImg(),
-                lastBean.getSortName(), lastBean.getSortImg(),
-                DateUtils.getMillis(crDate), !isOutcome, bundle.getInt("version") + 1));
+                lastBean.getSortName(),lastBean.getSortImg(),
+                DateUtils.getMillis(crDate),!isOutcome,bundle.getInt("version")+1));
     }
 
 

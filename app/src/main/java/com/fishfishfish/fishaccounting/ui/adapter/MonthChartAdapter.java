@@ -7,34 +7,40 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.fishfishfish.fishaccounting.R;
+import com.fishfishfish.fishaccounting.model.bean.local.BBill;
+
 import java.util.List;
-
-
-public class MonthChartAdapter extends RecyclerView.Adapter<MonthChartAdapter.ViewHolder> {
+/**
+ * ChartFragment
+ */
+public class MonthChartAdapter extends RecyclerView.Adapter<MonthChartAdapter.ViewHolder>{
 
     private Context mContext;
     private LayoutInflater mInflater;
-    private List<FishBill> mDatas;
+    private List<BBill> mDatas;
     private String sortName;
-
-    public MonthChartAdapter(Context context, List<FishBill> datas) {
-        this.mContext = context;
-        this.mInflater = LayoutInflater.from(context);
-        this.mDatas = datas;
-    }
 
     public void setSortName(String sortName) {
         this.sortName = sortName;
     }
 
-    public void setmDatas(List<FishBill> mDatas) {
+    public void setmDatas(List<BBill> mDatas) {
         this.mDatas = mDatas;
     }
 
+    public MonthChartAdapter(Context context, List<BBill> datas){
+        this.mContext = context;
+        this.mInflater = LayoutInflater.from(context);
+        this. mDatas = datas;
+    }
+
+
     @Override
     public int getItemCount() {
-        return (mDatas == null) ? 0 : mDatas.size();
+        return (mDatas== null) ? 0 : mDatas.size();
     }
+
 
 
     @Override
@@ -46,21 +52,21 @@ public class MonthChartAdapter extends RecyclerView.Adapter<MonthChartAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.rank.setText(position + 1 + "");
+        holder.rank.setText(position+1+"");
         holder.title.setText(sortName);
-        if (mDatas.get(position).isIncome())
+        if(mDatas.get(position).isIncome())
             holder.money.setText("+" + mDatas.get(position).getCost());
         else
             holder.money.setText("-" + mDatas.get(position).getCost());
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView title;
         private TextView money;
         private TextView rank;
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view){
             super(view);
 
             title = (TextView) view.findViewById(R.id.title);

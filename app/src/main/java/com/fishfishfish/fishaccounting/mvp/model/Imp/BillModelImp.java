@@ -1,13 +1,21 @@
 package com.fishfishfish.fishaccounting.mvp.model.Imp;
 
+import com.fishfishfish.fishaccounting.base.BaseObserver;
+import com.fishfishfish.fishaccounting.model.bean.local.BBill;
+import com.fishfishfish.fishaccounting.model.bean.BaseBean;
+import com.fishfishfish.fishaccounting.model.bean.local.BPay;
+import com.fishfishfish.fishaccounting.model.bean.local.BSort;
+import com.fishfishfish.fishaccounting.model.bean.local.NoteBean;
+import com.fishfishfish.fishaccounting.model.repository.LocalRepository;
 import com.fishfishfish.fishaccounting.mvp.model.BillModel;
-
-import java.util.List;
+import com.fishfishfish.fishaccounting.base.BaseObserver;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class BillModelImp implements BillModel {
+import java.util.List;
+
+public class BillModelImp implements BillModel{
 
     private BillOnListener listener;
 
@@ -17,46 +25,43 @@ public class BillModelImp implements BillModel {
 
     @Override
     public void getNote() {
-        final NoteBean note = new NoteBean();
+        final NoteBean note=new NoteBean();
         LocalRepository.getInstance()
-                .getPayBean()
+                .getBPay()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<List<PayBean>>() {
+                .subscribe(new BaseObserver<List<BPay>>() {
                     @Override
-                    protected void onSuccees(List<PayBean> PayBeans) throws Exception {
-                        note.setPayinfo(PayBeans);
+                    protected void onSuccees(List<BPay> bPays) throws Exception {
+                        note.setPayinfo(bPays);
                     }
-
                     @Override
                     protected void onFailure(Throwable e, boolean isNetWorkError) throws Exception {
                         listener.onFailure(e);
                     }
                 });
-        LocalRepository.getInstance().getSortBean(false)
+        LocalRepository.getInstance().getBSort(false)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<List<SortBean>>() {
+                .subscribe(new BaseObserver<List<BSort>>(){
                     @Override
-                    protected void onSuccees(List<SortBean> sorts) throws Exception {
+                    protected void onSuccees(List<BSort> sorts) throws Exception {
                         note.setOutSortlis(sorts);
                     }
-
                     @Override
                     protected void onFailure(Throwable e, boolean isNetWorkError) throws Exception {
                         listener.onFailure(e);
                     }
                 });
-        LocalRepository.getInstance().getSortBean(true)
+        LocalRepository.getInstance().getBSort(true)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<List<SortBean>>() {
+                .subscribe(new BaseObserver<List<BSort>>(){
                     @Override
-                    protected void onSuccees(List<SortBean> sorts) throws Exception {
+                    protected void onSuccees(List<BSort> sorts) throws Exception {
                         note.setInSortlis(sorts);
                         listener.onSuccess(note);
                     }
-
                     @Override
                     protected void onFailure(Throwable e, boolean isNetWorkError) throws Exception {
                         listener.onFailure(e);
@@ -65,13 +70,13 @@ public class BillModelImp implements BillModel {
     }
 
     @Override
-    public void add(BillBean BillBean) {
-        LocalRepository.getInstance().saveBillBean(BillBean)
+    public void add(BBill bBill) {
+        LocalRepository.getInstance().saveBBill(bBill)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<BillBean>() {
+                .subscribe(new BaseObserver<BBill>() {
                     @Override
-                    protected void onSuccees(BillBean BillBean) throws Exception {
+                    protected void onSuccees(BBill bBill) throws Exception {
                         listener.onSuccess(new BaseBean());
                     }
 
@@ -83,14 +88,14 @@ public class BillModelImp implements BillModel {
     }
 
     @Override
-    public void update(BillBean BillBean) {
+    public void update(BBill bBill) {
         LocalRepository.getInstance()
-                .updateBillBean(BillBean)
+                .updateBBill(bBill)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseObserver<BillBean>() {
+                .subscribe(new BaseObserver<BBill>() {
                     @Override
-                    protected void onSuccees(BillBean BillBean) throws Exception {
+                    protected void onSuccees(BBill bBill) throws Exception {
                         listener.onSuccess(new BaseBean());
                     }
 
@@ -104,7 +109,7 @@ public class BillModelImp implements BillModel {
     @Override
     public void delete(Long id) {
         LocalRepository.getInstance()
-                .deleteBillBeanById(id);
+                .deleteBBillById(id);
     }
 
     @Override
@@ -117,9 +122,7 @@ public class BillModelImp implements BillModel {
      */
     public interface BillOnListener {
         void onSuccess(BaseBean bean);
-
         void onSuccess(NoteBean bean);
-
         void onFailure(Throwable e);
     }
 }

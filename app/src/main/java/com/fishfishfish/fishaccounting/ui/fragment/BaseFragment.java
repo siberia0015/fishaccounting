@@ -8,10 +8,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import cn.bmob.v3.BmobUser;
+import com.fishfishfish.fishaccounting.model.bean.remote.MyUser;
 
+/**
+ * 无MVP的Fragment基类
+ */
 
 public abstract class BaseFragment extends Fragment {
     protected String TAG;
@@ -29,7 +33,7 @@ public abstract class BaseFragment extends Fragment {
         // 设置 TAG
         TAG = this.getClass().getSimpleName();
         //当前用户
-        currentUser = BmobUser.getCurrentUser(MyUser.class);
+        currentUser= BmobUser.getCurrentUser(MyUser.class);
         super.onAttach(context);
     }
 
@@ -55,8 +59,6 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected abstract int getLayoutId();
-
     protected abstract void initEventAndData();
-
     protected abstract void beforeDestroy();
 }

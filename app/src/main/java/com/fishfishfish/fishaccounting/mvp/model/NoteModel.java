@@ -1,12 +1,15 @@
 package com.fishfishfish.fishaccounting.mvp.model;
 
+import com.fishfishfish.fishaccounting.model.bean.local.BPay;
+import com.fishfishfish.fishaccounting.model.bean.local.BSort;
+
 public interface NoteModel {
 
     void getNote();
 
-    void addSort(BillBean BillBean);
+    void addSort(BSort bSort);
 
-    void addPay(PayBean PayBean);
+    void addPay(BPay bPay);
 
     void deleteSort(Long id);
 

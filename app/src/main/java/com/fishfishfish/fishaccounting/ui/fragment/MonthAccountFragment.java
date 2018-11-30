@@ -7,18 +7,31 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import butterknife.OnClick;
 import com.bigkoo.pickerview.TimePickerView;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import com.fishfishfish.fishaccounting.R;
+import com.fishfishfish.fishaccounting.model.event.SyncEvent;
+import com.fishfishfish.fishaccounting.ui.adapter.AccountCardAdapter;
+import com.fishfishfish.fishaccounting.model.bean.local.MonthAccountBean;
+import com.fishfishfish.fishaccounting.common.Constants;
+import com.fishfishfish.fishaccounting.mvp.presenter.Imp.MonthAccountPresenterImp;
+import com.fishfishfish.fishaccounting.mvp.presenter.MonthAccountPresenter;
+import com.fishfishfish.fishaccounting.utils.DateUtils;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
+import com.fishfishfish.fishaccounting.utils.SnackbarUtils;
+import com.fishfishfish.fishaccounting.mvp.view.MonthAccountView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import static com.fishfishfish.fishaccounting.utils.DateUtils.FORMAT_M;
+import static com.fishfishfish.fishaccounting.utils.DateUtils.FORMAT_Y;
 
 /**
  * 我的账户
@@ -52,7 +65,7 @@ public class MonthAccountFragment extends BaseFragment implements MonthAccountVi
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(SyncEvent event) {
-        if (event.getState() == 100)
+        if (event.getState()==100)
             getAcountData(Constants.currentUserId, setYear, setMonth);
     }
 
@@ -69,7 +82,7 @@ public class MonthAccountFragment extends BaseFragment implements MonthAccountVi
 
         initView();
 
-        presenter = new MonthAccountPresenterImp(this);
+        presenter=new MonthAccountPresenterImp(this);
 
         //请求当月数据
         getAcountData(Constants.currentUserId, setYear, setMonth);
@@ -107,24 +120,26 @@ public class MonthAccountFragment extends BaseFragment implements MonthAccountVi
 
     /**
      * 获取账单数据
-     *
      * @param userid
      * @param year
      * @param month
      */
     private void getAcountData(final int userid, String year, String month) {
-
+//        if (currentUser==null){
+//            Toast.makeText(getContext(), "请先登陆", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
         dataYear.setText(setYear + " 年");
         dataMonth.setText(setMonth);
 
-        presenter.getMonthAccountBills(userid, year, month);
+        presenter.getMonthAccountBills(userid,year,month);
     }
 
     @Override
     public void loadDataSuccess(MonthAccountBean tData) {
-        monthAccountBean = tData;
-        tOutcome.setText("" + monthAccountBean.getTotalOut());
-        tIncome.setText("" + monthAccountBean.getTotalIn());
+        monthAccountBean=tData;
+        tOutcome.setText(""+monthAccountBean.getTotalOut());
+        tIncome.setText(""+monthAccountBean.getTotalIn());
         list = monthAccountBean.getList();
         adapter.setmDatas(list);
         adapter.notifyDataSetChanged();
@@ -132,10 +147,10 @@ public class MonthAccountFragment extends BaseFragment implements MonthAccountVi
 
     @Override
     public void loadDataError(Throwable throwable) {
-        SnackbarUtils.show(mActivity, throwable.getMessage());
+        SnackbarUtils.show(mActivity,throwable.getMessage());
     }
 
-    @OnClick({R.id.layout_data, R.id.top_ll_out})
+    @OnClick({R.id.layout_data,R.id.top_ll_out})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_data:
@@ -143,9 +158,9 @@ public class MonthAccountFragment extends BaseFragment implements MonthAccountVi
                 new TimePickerView.Builder(getActivity(), new TimePickerView.OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View v) {//选中事件回调
-                        setYear = DateUtils.date2Str(date, "yyyy");
-                        setMonth = DateUtils.date2Str(date, "MM");
-                        getAcountData(Constants.currentUserId, setYear, setMonth);
+                        setYear=DateUtils.date2Str(date, "yyyy");
+                        setMonth=DateUtils.date2Str(date, "MM");
+                        getAcountData(Constants.currentUserId,setYear,setMonth);
                     }
                 }).setRangDate(null, Calendar.getInstance())
                         .setType(new boolean[]{true, true, false, false, false, false})

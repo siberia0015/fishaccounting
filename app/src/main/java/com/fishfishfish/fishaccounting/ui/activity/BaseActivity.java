@@ -18,21 +18,27 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.widget.Toast;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import com.fishfishfish.fishaccounting.model.bean.remote.MyUser;
+import com.fishfishfish.fishaccounting.utils.ActivityManagerUtils;
+import com.fishfishfish.fishaccounting.utils.OkHttpUtils;
+import com.fishfishfish.fishaccounting.utils.ThemeManager;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    protected static String TAG;
     protected Activity mContext;
     //当前用户
     protected MyUser currentUser;
     private Unbinder mUnBinder;
+
     // 要申请的权限
     private String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private AlertDialog dialog;
+
+    protected static String TAG;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         //注册 ButterKnife
         mUnBinder = ButterKnife.bind(this);
         //获取当前账户信息
-        currentUser = MyUser.getCurrentUser(MyUser.class);
+        currentUser= MyUser.getCurrentUser(MyUser.class);
 
         // 版本判断。当手机系统大于 23 时，才有必要去判断权限是否获取
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -103,9 +109,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (requestCode == 321) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    // 判断用户是否点击了不再提醒。(检测该权限是否还可以申请)
+                    // 判断用户是否 点击了不再提醒。(检测该权限是否还可以申请)
                     boolean b = shouldShowRequestPermissionRationale(permissions[0]);
                     if (!b) {
+                        // 用户还是想用我的 APP 的
                         // 提示用户去应用设置界面手动开启权限
                         showDialogTipUserGoToAppSettting();
                     } else
@@ -182,6 +189,5 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected abstract int getLayout();
-
     protected abstract void initEventAndData();
 }

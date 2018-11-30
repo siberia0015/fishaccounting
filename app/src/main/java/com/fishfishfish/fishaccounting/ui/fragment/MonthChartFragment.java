@@ -7,22 +7,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.*;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.fishfishfish.fishaccounting.R;
+import com.fishfishfish.fishaccounting.model.event.SyncEvent;
+import com.fishfishfish.fishaccounting.ui.adapter.MonthChartAdapter;
+import com.fishfishfish.fishaccounting.model.bean.local.MonthChartBean;
+import com.fishfishfish.fishaccounting.common.Constants;
+import com.fishfishfish.fishaccounting.mvp.presenter.Imp.MonthChartPresenterImp;
+import com.fishfishfish.fishaccounting.mvp.presenter.MonthChartPresenter;
+import com.fishfishfish.fishaccounting.utils.*;
+import com.fishfishfish.fishaccounting.mvp.view.MonthChartView;
+import com.fishfishfish.fishaccounting.widget.CircleImageView;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -32,12 +34,18 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import static com.fishfishfish.fishaccounting.utils.DateUtils.FORMAT_M;
+import static com.fishfishfish.fishaccounting.utils.DateUtils.FORMAT_Y;
 
 /**
  * 类别报表
  */
 public class MonthChartFragment extends BaseFragment
-        implements MonthChartView, OnChartValueSelectedListener {
+        implements MonthChartView,OnChartValueSelectedListener {
 
     @BindView(R.id.chart)
     PieChart mChart;
@@ -103,7 +111,7 @@ public class MonthChartFragment extends BaseFragment
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(SyncEvent event) {
-        if (event.getState() == 100)
+        if (event.getState()==100)
             getChartData(Constants.currentUserId, setYear, setMonth);
     }
 
@@ -120,7 +128,7 @@ public class MonthChartFragment extends BaseFragment
 
         initView();
 
-        presenter = new MonthChartPresenterImp(this);
+        presenter=new MonthChartPresenterImp(this);
 
         //请求当月数据
         getChartData(Constants.currentUserId, setYear, setMonth);
@@ -158,7 +166,6 @@ public class MonthChartFragment extends BaseFragment
 
     /**
      * 获取账单数据
-     *
      * @param userid
      * @param year
      * @param month
@@ -171,18 +178,18 @@ public class MonthChartFragment extends BaseFragment
         dataYear.setText(setYear + " 年");
         dataMonth.setText(setMonth);
         //请求某年某月数据
-        presenter.getMonthChartBills(userid, year, month);
+        presenter.getMonthChartBills(userid,year,month);
     }
 
     @Override
     public void loadDataSuccess(MonthChartBean tData) {
-        monthChartBean = tData;
+        monthChartBean=tData;
         setReportData();
     }
 
     @Override
     public void loadDataError(Throwable throwable) {
-        SnackbarUtils.show(mActivity, throwable.getMessage());
+        SnackbarUtils.show(mActivity,throwable.getMessage());
     }
 
     /**
@@ -207,8 +214,8 @@ public class MonthChartFragment extends BaseFragment
             totalMoney = monthChartBean.getTotalIn();
         }
 
-        tOutcome.setText("" + monthChartBean.getTotalOut());
-        tIncome.setText("" + monthChartBean.getTotalIn());
+        tOutcome.setText(""+monthChartBean.getTotalOut());
+        tIncome.setText(""+monthChartBean.getTotalIn());
         centerMoney.setText("" + totalMoney);
 
         ArrayList<PieEntry> entries = new ArrayList<>();
@@ -217,12 +224,12 @@ public class MonthChartFragment extends BaseFragment
         if (tMoneyBeanList != null && tMoneyBeanList.size() > 0) {
             layoutTypedata.setVisibility(View.VISIBLE);
             for (int i = 0; i < tMoneyBeanList.size(); i++) {
-                float scale = tMoneyBeanList.get(i).getMoney() / totalMoney;
+                float scale =tMoneyBeanList.get(i).getMoney() / totalMoney;
                 float value = (scale < 0.06f) ? 0.06f : scale;
                 entries.add(new PieEntry(value, PieChartUtils.getDrawable(tMoneyBeanList.get(i).getSortImg())));
                 colors.add(Color.parseColor(tMoneyBeanList.get(i).getBack_color()));
             }
-            setNoteData(0, entries.get(0).getValue());
+            setNoteData(0,entries.get(0).getValue());
         } else {//无数据时的显示
             layoutTypedata.setVisibility(View.GONE);
             entries.add(new PieEntry(1f));
@@ -238,7 +245,7 @@ public class MonthChartFragment extends BaseFragment
      * @param index
      */
     private void setNoteData(int index, float value) {
-        if (null == tMoneyBeanList || tMoneyBeanList.size() == 0)
+        if (null==tMoneyBeanList||tMoneyBeanList.size()==0)
             return;
         sort_image = tMoneyBeanList.get(index).getSortImg();
         sort_name = tMoneyBeanList.get(index).getSortName();
@@ -249,7 +256,7 @@ public class MonthChartFragment extends BaseFragment
             money.setText("+" + tMoneyBeanList.get(index).getMoney());
         }
         DecimalFormat df = new DecimalFormat("0.00%");
-        title.setText(sort_name + " : " + df.format(value));
+        title.setText(sort_name+" : "+df.format(value));
         rankTitle.setText(sort_name + "排行榜");
         circleBg.setImageDrawable(new ColorDrawable(Color.parseColor(back_color)));
         circleImg.setImageDrawable(PieChartUtils.getDrawable(tMoneyBeanList.get(index).getSortImg()));
@@ -266,7 +273,7 @@ public class MonthChartFragment extends BaseFragment
             return;
         int entryIndex = (int) h.getX();
         PieChartUtils.setRotationAngle(mChart, entryIndex);
-        setNoteData(entryIndex, e.getY());
+        setNoteData(entryIndex,e.getY());
     }
 
 

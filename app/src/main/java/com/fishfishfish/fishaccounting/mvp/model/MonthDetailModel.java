@@ -1,5 +1,7 @@
 package com.fishfishfish.fishaccounting.mvp.model;
 
+import com.fishfishfish.fishaccounting.model.bean.local.BBill;
+
 public interface MonthDetailModel {
 
     /**
@@ -12,7 +14,7 @@ public interface MonthDetailModel {
      */
     void delete(Long id);
 
-    void update(BillBean BillBean);
+    void update(BBill bBill);
 
     void onUnsubscribe();
 }

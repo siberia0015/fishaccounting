@@ -7,20 +7,25 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import android.widget.Toast;
+import butterknife.BindView;
+import butterknife.OnClick;
 import com.fishfishfish.fishaccounting.R;
+import com.fishfishfish.fishaccounting.common.Constants;
+import com.fishfishfish.fishaccounting.utils.*;
+import com.fishfishfish.fishaccounting.widget.VerifyCodeButton;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.OnClick;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
-
+/**
+ * 忘记密码 Activity
+ */
 public class ForgetPasswordActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)

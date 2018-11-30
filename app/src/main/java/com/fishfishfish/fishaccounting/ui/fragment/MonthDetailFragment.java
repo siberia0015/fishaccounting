@@ -10,12 +10,21 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import cn.bmob.v3.BmobUser;
 import com.bigkoo.pickerview.TimePickerView;
 import com.fishfishfish.fishaccounting.R;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import com.fishfishfish.fishaccounting.model.bean.local.BBill;
+import com.fishfishfish.fishaccounting.model.event.SyncEvent;
+import com.fishfishfish.fishaccounting.ui.activity.BillAddActivity;
+import com.fishfishfish.fishaccounting.ui.activity.BillEditActivity;
+import com.fishfishfish.fishaccounting.ui.adapter.MonthDetailAdapter;
+import com.fishfishfish.fishaccounting.model.bean.BaseBean;
+import com.fishfishfish.fishaccounting.model.bean.local.MonthDetailBean;
+import com.fishfishfish.fishaccounting.mvp.presenter.Imp.MonthDetailPresenterImp;
+import com.fishfishfish.fishaccounting.mvp.presenter.MonthDetailPresenter;
+import com.fishfishfish.fishaccounting.widget.stickyheader.StickyHeaderGridLayoutManager;
+import com.fishfishfish.fishaccounting.common.Constants;
+import com.fishfishfish.fishaccounting.utils.DateUtils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -23,13 +32,21 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import com.fishfishfish.fishaccounting.utils.SnackbarUtils;
+import com.fishfishfish.fishaccounting.mvp.view.MonthDetailView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import static com.fishfishfish.fishaccounting.utils.DateUtils.FORMAT_M;
+import static com.fishfishfish.fishaccounting.utils.DateUtils.FORMAT_Y;
 
 /**
  * 明细
  */
 public class MonthDetailFragment extends BaseFragment implements MonthDetailView {
 
-    private static final int SPAN_SIZE = 1;
     @BindView(R.id.data_year)
     TextView dataYear;
     @BindView(R.id.data_month)
@@ -48,17 +65,22 @@ public class MonthDetailFragment extends BaseFragment implements MonthDetailView
     SwipeRefreshLayout swipe;
     @BindView(R.id.float_btn)
     FloatingActionButton floatBtn;
-    int part, index;
+
     private MonthDetailPresenter presenter;
+
+    private static final int SPAN_SIZE = 1;
     private StickyHeaderGridLayoutManager mLayoutManager;
     private MonthDetailAdapter adapter;
     private List<MonthDetailBean.DaylistBean> list;
+
+    int part, index;
+
     private String setYear = DateUtils.getCurYear(FORMAT_Y);
     private String setMonth = DateUtils.getCurMonth(FORMAT_M);
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(SyncEvent event) {
-        if (event.getState() == 100)
+        if (event.getState()==100)
             getBills(Constants.currentUserId, setYear, setMonth);
     }
 
@@ -207,9 +229,9 @@ public class MonthDetailFragment extends BaseFragment implements MonthDetailView
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.float_btn:  //添加
-                if (BmobUser.getCurrentUser() == null)
-                    SnackbarUtils.show(mContext, "请先登录");
-                else {
+                if (BmobUser.getCurrentUser()==null)
+                    SnackbarUtils.show(mContext,"请先登录");
+                else{
                     Intent intent = new Intent(getContext(), BillAddActivity.class);
                     startActivityForResult(intent, 0);
                 }

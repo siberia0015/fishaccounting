@@ -5,13 +5,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.fishfishfish.fishaccounting.R;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnFocusChange;
+import com.fishfishfish.fishaccounting.R;
+import com.fishfishfish.fishaccounting.model.bean.remote.MyUser;
+import com.fishfishfish.fishaccounting.mvp.presenter.Imp.UserLogPresenterImp;
+import com.fishfishfish.fishaccounting.mvp.presenter.UserLogPresenter;
+import com.fishfishfish.fishaccounting.utils.*;
+import com.fishfishfish.fishaccounting.mvp.view.UserLogView;
+import com.fishfishfish.fishaccounting.widget.OwlView;
+import com.fishfishfish.fishaccounting.mvp.presenter.Imp.UserLogPresenterImp;
+import com.fishfishfish.fishaccounting.mvp.presenter.UserLogPresenter;
+import com.fishfishfish.fishaccounting.mvp.view.UserLogView;
 
+/**
+ * Created by zhouas666 on 2017/12/8.
+ */
 public class LoginActivity extends BaseActivity implements UserLogView {
 
     @BindView(R.id.owl_view)
@@ -47,7 +57,7 @@ public class LoginActivity extends BaseActivity implements UserLogView {
     }
 
     //监听密码输入框的聚焦事件
-    @OnFocusChange({R.id.login_et_password, R.id.login_et_rpassword})
+    @OnFocusChange({R.id.login_et_password,R.id.login_et_rpassword})
     public void onFocusChange(View view, boolean b) {
         if (b) {
             mOwlView.open();
@@ -136,7 +146,7 @@ public class LoginActivity extends BaseActivity implements UserLogView {
 
         ProgressUtils.show(this, "正在注册...");
 
-        userLogPresenter.signup(username, password, email);
+        userLogPresenter.signup(username,password,email);
 
     }
 
@@ -146,7 +156,7 @@ public class LoginActivity extends BaseActivity implements UserLogView {
         if (isLogin) {
             setResult(RESULT_OK, new Intent());
             finish();
-        } else {
+        }else {
             SnackbarUtils.show(mContext, "注册成功");
         }
 

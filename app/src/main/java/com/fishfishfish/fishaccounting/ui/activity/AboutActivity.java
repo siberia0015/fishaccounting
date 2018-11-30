@@ -7,13 +7,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-
-import com.fishfishfish.fishaccounting.R;
-
 import butterknife.BindView;
 import butterknife.OnClick;
+import com.fishfishfish.fishaccounting.R;
 
-
+/**
+ * 关于App
+ */
 public class AboutActivity extends BaseActivity {
 
     @BindView(R.id.about_toolbar)
@@ -31,8 +31,8 @@ public class AboutActivity extends BaseActivity {
     @Override
     protected void initEventAndData() {
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
                 finish();
             }
         });

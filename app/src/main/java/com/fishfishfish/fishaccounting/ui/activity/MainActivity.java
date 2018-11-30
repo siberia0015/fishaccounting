@@ -14,21 +14,41 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 
+import cn.bmob.v3.BmobUser;
+
+import com.baidu.ocr.ui.camera.CameraActivity;
 import com.bumptech.glide.Glide;
 import com.fishfishfish.fishaccounting.R;
-
-import java.util.List;
+import com.fishfishfish.fishaccounting.model.bean.remote.MyUser;
+import com.fishfishfish.fishaccounting.model.bean.local.BSort;
+import com.fishfishfish.fishaccounting.model.bean.local.NoteBean;
+import com.fishfishfish.fishaccounting.model.repository.BmobRepository;
+import com.fishfishfish.fishaccounting.model.repository.LocalRepository;
+import com.fishfishfish.fishaccounting.ui.adapter.MainFragmentPagerAdapter;
+import com.fishfishfish.fishaccounting.ui.fragment.MonthAccountFragment;
+import com.fishfishfish.fishaccounting.widget.FileUtil;
+import com.fishfishfish.fishaccounting.widget.PhotoActivity;
+import com.fishfishfish.fishaccounting.ui.fragment.MonthChartFragment;
+import com.fishfishfish.fishaccounting.ui.fragment.MonthDetailFragment;
+import com.fishfishfish.fishaccounting.common.Constants;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import com.fishfishfish.fishaccounting.utils.SharedPUtils;
+import com.fishfishfish.fishaccounting.utils.SnackbarUtils;
+import com.fishfishfish.fishaccounting.utils.ThemeManager;
+import com.fishfishfish.fishaccounting.utils.ToastUtils;
+import com.fishfishfish.fishaccounting.ui.fragment.MonthAccountFragment;
+import com.fishfishfish.fishaccounting.ui.fragment.MonthChartFragment;
+import com.fishfishfish.fishaccounting.ui.fragment.MonthDetailFragment;
+import com.google.gson.Gson;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    protected static final int USERINFOACTIVITY_CODE = 0;
-    protected static final int LOGINACTIVITY_CODE = 1;
     @BindView(R.id.toolbar)
     android.support.v7.widget.Toolbar toolbar;
     @BindView(R.id.tablayout)
@@ -39,9 +59,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     DrawerLayout drawer;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
+
     private View drawerHeader;
     private ImageView drawerIv;
     private TextView drawerTvAccount, drawerTvMail;
+
+    protected static final int USERINFOACTIVITY_CODE = 0;
+    protected static final int LOGINACTIVITY_CODE = 1;
+
     // Tab
     private FragmentManager mFragmentManager;
     private MainFragmentPagerAdapter mainFragmentPagerAdapter;
@@ -55,10 +80,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void initEventAndData() {
 
         //第一次进入将默认账单分类添加到数据库
-        if (SharedPUtils.isFirstStart(mContext)) {
-            Log.i(TAG, "第一次进入将默认账单分类添加到数据库");
-            NoteBean note = new Gson().fromJson(Constants.BILL_NOTE, NoteBean.class);
-            List<BSort> sorts = note.getOutSortlis();
+        if(SharedPUtils.isFirstStart(mContext)){
+            Log.i(TAG,"第一次进入将默认账单分类添加到数据库");
+            NoteBean note= new Gson().fromJson(Constants.BILL_NOTE, NoteBean.class);
+            List<BSort> sorts=note.getOutSortlis();
             sorts.addAll(note.getInSortlis());
             LocalRepository.getInstance().saveBsorts(sorts);
             LocalRepository.getInstance().saveBPays(note.getPayinfo());
@@ -67,20 +92,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         //初始化ViewPager
         mFragmentManager = getSupportFragmentManager();
         mainFragmentPagerAdapter = new MainFragmentPagerAdapter(mFragmentManager);
-        mainFragmentPagerAdapter.addFragment(new MonthDetailFragment(), "账目");
+        mainFragmentPagerAdapter.addFragment(new MonthDetailFragment(), "明细");
         mainFragmentPagerAdapter.addFragment(new MonthChartFragment(), "报表");
-        mainFragmentPagerAdapter.addFragment(new MonthAccountFragment(), "钱包");
+        mainFragmentPagerAdapter.addFragment(new MonthAccountFragment(), "卡片");
 
         viewPager.setAdapter(mainFragmentPagerAdapter);
 
         //初始化TabLayout
-        tabLayout.addTab(tabLayout.newTab().setText("账目"));
+        tabLayout.addTab(tabLayout.newTab().setText("明细"));
         tabLayout.addTab(tabLayout.newTab().setText("报表"));
-        tabLayout.addTab(tabLayout.newTab().setText("钱包"));
+        tabLayout.addTab(tabLayout.newTab().setText("卡片"));
         tabLayout.setupWithViewPager(viewPager);
 
         //初始化Toolbar
-        toolbar.setTitle("CocoBill");
+        toolbar.setTitle("小鱼记账");
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -97,7 +122,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             public void onClick(View view) {
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
-                if (currentUser == null) {
+                if (currentUser==null) {
                     //用户id为0表示未有用户登陆
                     startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), LOGINACTIVITY_CODE);
                 } else {
@@ -117,13 +142,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
      * 设置DrawerHeader的用户信息
      */
     public void setDrawerHeaderAccount() {
-        currentUser = BmobUser.getCurrentUser(MyUser.class);
+        currentUser= BmobUser.getCurrentUser(MyUser.class);
         //获取当前用户
         if (currentUser != null) {
             drawerTvAccount.setText(currentUser.getUsername());
             drawerTvMail.setText(currentUser.getEmail());
             Glide.with(mContext).load(currentUser.getImage()).into(drawerIv);
-        } else {
+        }else{
             drawerTvAccount.setText("账号");
             drawerTvMail.setText("点我登陆");
             drawerIv.setImageResource(R.mipmap.ic_def_icon);
@@ -211,14 +236,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         } else if (id == R.id.nav_total) {
             viewPager.setCurrentItem(2);
         } else if (id == R.id.nav_sync) {   //同步账单
-            if (currentUser == null)
-                SnackbarUtils.show(mContext, "请先登陆");
+            if(currentUser==null)
+                SnackbarUtils.show(mContext,"请先登陆");
             else
                 BmobRepository.getInstance().syncBill(currentUser.getObjectId());
-        } else if (id == R.id.nav_setting) {   //设置
-            startActivity(new Intent(this, SettingActivity.class));
+        }  else if (id == R.id.nav_setting) {   //设置
+            startActivity(new Intent(this,SettingActivity.class));
         } else if (id == R.id.nav_about) {     //关于
-            startActivity(new Intent(MainActivity.this, AboutActivity.class));
+            startActivity(new Intent(MainActivity.this, PhotoActivity.class));//改成了拍照识别
+
         } else if (id == R.id.nav_theme) {     //主题
             showUpdateThemeDialog();
         } else if (id == R.id.nav_exit) {      //退出登陆
@@ -232,11 +258,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                             //清除本地数据
                             LocalRepository.getInstance().deleteAllBills();
                             //刷新账户数据
+                            //setDrawerHeaderAccount();
                             initEventAndData();
                         }
                     })
                     .show();
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

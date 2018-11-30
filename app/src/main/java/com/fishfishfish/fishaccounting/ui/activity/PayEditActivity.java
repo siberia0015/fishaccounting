@@ -11,14 +11,23 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
+import butterknife.BindView;
+import butterknife.OnClick;
 import com.fishfishfish.fishaccounting.R;
+import com.fishfishfish.fishaccounting.model.bean.local.BSort;
+import com.fishfishfish.fishaccounting.ui.adapter.PayEditAdapter;
+import com.fishfishfish.fishaccounting.model.bean.local.BPay;
+import com.fishfishfish.fishaccounting.model.bean.local.NoteBean;
+import com.fishfishfish.fishaccounting.mvp.presenter.Imp.NotePresenterImp;
+import com.fishfishfish.fishaccounting.mvp.presenter.NotePresenter;
+import com.fishfishfish.fishaccounting.utils.*;
+import com.fishfishfish.fishaccounting.mvp.view.NoteView;
+import com.fishfishfish.fishaccounting.mvp.presenter.Imp.NotePresenterImp;
+import com.fishfishfish.fishaccounting.mvp.presenter.NotePresenter;
+import com.fishfishfish.fishaccounting.mvp.view.NoteView;
 
 import java.util.Collections;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by zhouas666 on 2018/1/14.
@@ -37,7 +46,7 @@ public class PayEditActivity extends BaseActivity implements NoteView {
     private PayEditAdapter payEditAdapter;
 
     private NoteBean noteBean;
-    private List<PayBean> mDatas;
+    private List<BPay> mDatas;
 
     @Override
     protected int getLayout() {
@@ -52,7 +61,7 @@ public class PayEditActivity extends BaseActivity implements NoteView {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false));
 
-        presenter = new NotePresenterImp(this);
+        presenter=new NotePresenterImp(this);
 
         //本地获取失败后
         if (noteBean == null) {
@@ -65,12 +74,12 @@ public class PayEditActivity extends BaseActivity implements NoteView {
     }
 
     @Override
-    public void loadDataSuccess(SortBean tData) {
+    public void loadDataSuccess(BSort tData) {
 
     }
 
     @Override
-    public void loadDataSuccess(PayBean tData) {
+    public void loadDataSuccess(BPay tData) {
         SharedPUtils.setUserNoteBean(mContext, (NoteBean) null);
         ProgressUtils.dismiss();
         initEventAndData();
@@ -78,7 +87,7 @@ public class PayEditActivity extends BaseActivity implements NoteView {
 
     @Override
     public void loadDataSuccess(NoteBean tData) {
-        noteBean = tData;
+        noteBean=tData;
         //成功后加载布局
         setTitleStatus();
         //保存数据
@@ -88,14 +97,14 @@ public class PayEditActivity extends BaseActivity implements NoteView {
     @Override
     public void loadDataError(Throwable throwable) {
         ProgressUtils.dismiss();
-        SnackbarUtils.show(mContext, throwable.getMessage());
+        SnackbarUtils.show(mContext,throwable.getMessage());
     }
 
     /**
      * 设置状态
      */
     private void setTitleStatus() {
-        mDatas = noteBean.getPayinfo();
+        mDatas=noteBean.getPayinfo();
         initView();
     }
 
@@ -177,9 +186,9 @@ public class PayEditActivity extends BaseActivity implements NoteView {
      */
     public void showContentDialog() {
 
-        ProgressUtils.show(mContext, "正在添加");
+        ProgressUtils.show(mContext,"正在添加");
 
-        final LinearLayout layout = new LinearLayout(mContext);
+        final LinearLayout layout=new LinearLayout(mContext);
         layout.setOrientation(LinearLayout.VERTICAL);
         final EditText editText = new EditText(mContext);
         editText.setHint("名称");
@@ -199,7 +208,7 @@ public class PayEditActivity extends BaseActivity implements NoteView {
                         } else {
 //                            ProgressUtils.show(mContext);
 //                            presenter.addPay(currentUser.getId(),input,"card_bank.png",editText1.getText().toString());
-                            PayBean pay = new PayBean(null, input, "card_bank.png", 0, 0);
+                            BPay pay=new BPay(null,input,"card_bank.png",0,0);
                             mDatas.add(pay);
                             presenter.addPay(pay);
                         }
