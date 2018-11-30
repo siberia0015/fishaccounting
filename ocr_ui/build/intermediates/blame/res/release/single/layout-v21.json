@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/wenyiqian/Downloads/FishAccounting/ocr_ui/build/intermediates/res/merged/release/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/wenyiqian/.android/build-cache/ceb2a9da77c3bf56292ef404aca9ff286371d7a6/output/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/wenyiqian/Downloads/FishAccounting/ocr_ui/build/intermediates/res/merged/release/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/wenyiqian/.android/build-cache/ceb2a9da77c3bf56292ef404aca9ff286371d7a6/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/wenyiqian/Downloads/FishAccounting/ocr_ui/build/intermediates/res/merged/release/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/wenyiqian/.android/build-cache/ceb2a9da77c3bf56292ef404aca9ff286371d7a6/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/wenyiqian/Downloads/FishAccounting/ocr_ui/build/intermediates/res/merged/release/layout-v21/notification_action.xml",
+        "source": "/Users/wenyiqian/.android/build-cache/ceb2a9da77c3bf56292ef404aca9ff286371d7a6/output/res/layout-v21/notification_action.xml"
+    }
+]

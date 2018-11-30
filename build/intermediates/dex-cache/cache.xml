@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/ea87aa92f0c4314128f39ff6bde6b72a8329a587/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e798e14aada70aba5261533f9602098be07d781e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/f85f06adc4470d958b07f2bc140581270bba71dc/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_55b60a51903be90a4d09142d7d563e6ccf9d2556/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.10/4b95f4897fa13f2cd904aee711aeafc0c5295cd8/commons-codec-1.10.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4b95f4897fa13f2cd904aee711aeafc0c5295cd8">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/commons-codec-1.10_9c406ada2d6ff60916f1dba98402f977c4670f14/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/0db439a3141ab23ac2301c7bfb64478c41953c7d/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_972d3cbfe670003b625b9b449620668f74184251/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/0a0620bc85e887266b31383efd8095667b84d374/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9e2e19f43f681a84a6eca7c1b1a305b07335ee11/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/Downloads/FishAccounting/app/libs/ocr-sdk.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c27414b0aaebf138ad149373556fbac40b85a633">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/2/ocr-sdk_a20e8020e83108e74062f25742e13545f1fa42c9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/895954c8336f2fc364b97265c774564715530049/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_33274169fb55aed369048a11653316f3dacda018/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/25.3.1/bf8841d29fa39e077730e7a91222c2ce269fa7c9/support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.1_055d3636069c31c7a311e19a0f5cf465bdf9f3c5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/org.greenrobot/greendao-generator/3.2.2/c1d222f0f518f6d32150c566ef378e0dcba8de1e/greendao-generator-3.2.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c1d222f0f518f6d32150c566ef378e0dcba8de1e">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/greendao-generator-3.2.2_e883a7dde645700c7b8a81d2b3b656f7a0e922a0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/org.greenrobot/greendao/3.2.2/f8c7ebdc29310be23d076e5512bafe6bad3ce2f0/greendao-3.2.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f8c7ebdc29310be23d076e5512bafe6bad3ce2f0">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/greendao-3.2.2_158a1ea59784fa314f9831395b5b91c6b67c0161/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/Downloads/FishAccounting/ocr_ui/build/intermediates/bundles/default/libs/license.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="eca3cb381d01815bb3cec10d215f5d6ba1b2308d">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/8/license_afab96aa5091f49185305e3f8b77193fcc207ee1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/bbb1d95ff7658e7640bb082ada67ca24fbb28dcb/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4119ea97a7191ff9b8f33b534ea220448f62f491">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_72155a0895e1f3f2b1b3c8dd7c6fb1fec85475f3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/org.greenrobot/greendao-api/3.2.2/e9bbf7a184b0b4914a10d8179c993cc9aa9b1b33/greendao-api-3.2.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e9bbf7a184b0b4914a10d8179c993cc9aa9b1b33">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/greendao-api-3.2.2_5e73a3c9d15404e70e0927d5e9fc8db10dc5a633/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/eventbus-3.0.0_01b54267f41d8bd0b31b10cd8776ec68cdcabb1c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/b17063162058363b3ae1020b63c832f4a4e6e4d3/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6924ef2127a1fb106d13d701c25b2688223c0fad">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2e8932c48a3c07d22c78ebbd84e3dcb35257f8d0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/f6b1ab0efae0b3921fd14830a7e206ee2d88cd8c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7e947f993bf32a00fcb3078cdda8bb11c930afb">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_dd1b462a174bf792a06f4df2ac99c2a64a995db0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/9f5cc930044a644ee333e724933a7cf6ad871b1d/output/jars/libs/okio-1.7.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f64e0f80ef26fbc722b4bc9f024370d5b1e8f6d6">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.7.0_db2316f9e116ecdfbb53b51f05e50efaa0359dd3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/caa435373c894a21a84375b79c9079dfbeff144e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7e14414acf97b4a795d6560514d89ca66a47836a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/180d3033c73001d59a46b045d0a6c9a1e7c131d8/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_bc7c158cf53add2494ff248088203375f6369a51/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/9f5cc930044a644ee333e724933a7cf6ad871b1d/output/jars/libs/gson-2.6.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="cea3a9be08d0dcf89783b2cc87c8787fdb2a0d12">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.6.2_245120c0cd1a7005839010dc579d23f3d4bd9161/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/ee394f196a0182b15e63e429b96c2bf448f0588c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5938f265a2fb7d6dec93cced3ad41511719e35b5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/ecb795d6419aa9864a13a3fc126588d3b42ed1cf/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e3a3d62fab67ccb83f386a4c092bfb5747ea15a7">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d657b4facf218510c0aec858f2160d95c090c86b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/9f5cc930044a644ee333e724933a7cf6ad871b1d/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ac71d1248d0f3577b39093396e6ff35582a5d7a4">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4a2019f83744717590f058dd8317252b052753e4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/2b5609344403428c4415cf09e3a45e30198d98cd/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a55ae5583d1e4cf551cba152715e3732828024c4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.7.0_9cf9c15c050fb1d0fb2d2498556e2b9447d001fa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_e1981559190d85f603dcbf8b0fce9dd4164d07a2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/org.apache.poi/poi/3.17/ae92292a2043888b40d418da97dc0b669fde326/poi-3.17.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0ae92292a2043888b40d418da97dc0b669fde326">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/poi-3.17_46f92aef210fa8cbb9d120a72af93577bd2c99f6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/9f5cc930044a644ee333e724933a7cf6ad871b1d/output/jars/libs/okhttp-3.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e009af854d43130a9a13bcba900ddd1124e835d5">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.3.1_c51ae9c92966017771029d371ce8c353004d2a42/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/9f5cc930044a644ee333e724933a7cf6ad871b1d/output/jars/libs/rxandroid-1.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="84127ad71f76445b8215afceb38e8b05f58eafa6">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/rxandroid-1.2.0_6d895b49abb28272b755bd60d41b62de12948e09/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/9f5cc930044a644ee333e724933a7cf6ad871b1d/output/jars/libs/rxjava-1.1.6.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="79f0c1e382e8b62e91064ef6b71130dda83f338e">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/rxjava-1.1.6_7b613347897ca39e641ad4f8134e84ab72940bbb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/1fe7f2b7a7c6dbc296ac15e97710c09d533c5d19/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8cec50fc9cc847bad0d6ed7d93814f4b34744521">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_25a7c0a9f37d40c612c4e50251a0c828a31b1b6c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/2caf2267945954e862f02dd0d203e1ac84db498e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ea02e08fd41b87c59b15837d9bf5873e344bc3db/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/Downloads/FishAccounting/app/libs/ocr-sdk.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c27414b0aaebf138ad149373556fbac40b85a633">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/2/ocr-sdk_a20e8020e83108e74062f25742e13545f1fa42c9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.2.1/d6f54d76edfbe779a50a8636b10fd3f555d8f780/butterknife-annotations-8.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d6f54d76edfbe779a50a8636b10fd3f555d8f780">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.2.1_b431e4121f32ee9cf46108d721d396d69050edb4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/94f12ff8e258db2c6cdc897efb5db04b568f0cea/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="09d89c0a8e2ba8d2fd5e7110d62bc6916d642567">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_031d67dc798b714dadee37643c51cc17c5fc629b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/1023bebb92bc716fe48e998b0ac2d20568992863/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6666dd525c3da197e7d07f4f23ef5fc7881a697b">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0864163aa24afc5550916346168860102104fdb4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/056ba86687c07cca28c71a42bece02964d39f3e2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_70f7bf92b27d4f6ac4dd7ac5f61eb795786afc79/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/08caeb61f3e9a7ee27d652adf64cc2b881666412/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_cbd0b0169d67ef31e27d9ec35629d8b4d47f3e0c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/01ec0debe92f39f7ce8f1a74299aecfb6fb623d0/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1454255a5e7c71c8cdfe202a61ccf0926baba178/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/org.freemarker/freemarker/2.3.23/cd143cd8c02a9f838e3cb75a6dfe133750437f6d/freemarker-2.3.23.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="cd143cd8c02a9f838e3cb75a6dfe133750437f6d">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/freemarker-2.3.23_62d3f2214a24066b2593f1466cfed82c46656471/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/b2b8e6e7f45f410f2e1b3910101b3361cac956a7/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c0c9cc6737cc20c72a7341d2b1f699335e5c0014">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e71b79532ee6f935d4e8e10ecb2adb1fae265d00/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/library-2.4.0_b098e1504e273127dfdc946bab3ae520744f98e5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/9f5cc930044a644ee333e724933a7cf6ad871b1d/output/jars/libs/BmobSDK_3.5.5_20170420.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f67cfc97fcbde8b4764f01135b10afa716ae1a40">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/BmobSDK_3.5.5_20170420_cdf98f884920913695a6030ff1e2b49114725764/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/Downloads/FishAccounting/ocr_ui/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3e6f635bd05932adc0e4015f664b097b1a7a38f2">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/4/classes_af8820b0b39c45ba919feff71aa161a7b23e202a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/Downloads/FishAccounting/ocr_ui/build/intermediates/bundles/default/libs/license.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="eca3cb381d01815bb3cec10d215f5d6ba1b2308d">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/8/license_afab96aa5091f49185305e3f8b77193fcc207ee1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="14b8c877d98005ba3941c9257cfe09f6ed0e0d74">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/reactive-streams-1.0.0_569e4f455e33a9c351e8e1d18d270c79023a479c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/2a46cdbab766b78b9b742ba8eabe9fa8415d05b2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_eb534ede73deb2585a491786343c7e8d6180aec6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-collections4/4.1/a4cf4688fe1c7e3a63aa636cc96d013af537768e/commons-collections4-4.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a4cf4688fe1c7e3a63aa636cc96d013af537768e">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/commons-collections4-4.1_eb4830a11db15b9af9d0c2ddf54cb0f9289b5e5f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.0.1/57f850a6b317e5582f1dbaff10a9e7d7e1fcdcfb/rxjava-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="57f850a6b317e5582f1dbaff10a9e7d7e1fcdcfb">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/rxjava-2.0.1_27f806c9ec3b1b4ec32da5df6976c827c37f1e11/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/44c84c17218863527ec6a9ea933774acd8fc5c7c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ca5e58104f56f918f0fb3a5b1b371ab599ae56b2">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e9cf52cbaf68963937056bba9afa6fe46d3e474b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.android/build-cache/07089bdd6398cd65766ced08aef8c876fe1e0b8d/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="379a48c2da13ffb7ec7134f2c715663834357670">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b4bcbc78c16711b3f8c4c67f2af722b39c40bc7a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/wenyiqian/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.0.3/92fb46ea210fc3f0ab1125f28b33cf098583e8cf/MPAndroidChart-v3.0.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="92fb46ea210fc3f0ab1125f28b33cf098583e8cf">
+        <dex dex="/Users/wenyiqian/Downloads/FishAccounting/app/build/intermediates/transforms/dex/debug/folders/1000/10/MPAndroidChart-v3.0.3_adc616b894eb1e5d4d62c671669462e1ead72a8d/classes.dex" />
+    </item>
+
+</items>
