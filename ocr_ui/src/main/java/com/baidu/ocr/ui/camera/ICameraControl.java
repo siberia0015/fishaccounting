@@ -28,9 +28,28 @@ public interface ICameraControl {
     int FLASH_MODE_AUTO = 2;
 
     /**
+     * 设置闪光灯状态。
+     *
+     * @param flashMode {@link #FLASH_MODE_TORCH,#FLASH_MODE_OFF,#FLASH_MODE_AUTO}
+     */
+    void setFlashMode(@FlashMode int flashMode);
+
+    @IntDef({FLASH_MODE_TORCH, FLASH_MODE_OFF, FLASH_MODE_AUTO})
+    @interface FlashMode {
+
+    }
+
+    /**
      * 设置本地质量控制回调，如果不设置则视为不扫描调用本地质量控制代码。
      */
     void setDetectCallback(OnDetectPictureCallback callback);
+
+    /**
+     * 照相回调。
+     */
+    interface OnTakePictureCallback {
+        void onPictureTaken(byte[] data);
+    }
 
     /**
      * 打开相机。
@@ -48,35 +67,30 @@ public interface ICameraControl {
 
     /**
      * 相机对应的预览视图。
-     *
      * @return 预览视图
      */
     View getDisplayView();
 
     /**
      * 看到的预览可能不是照片的全部。返回预览视图的全貌。
-     *
      * @return 预览视图frame;
      */
     Rect getPreviewFrame();
 
     /**
      * 拍照。结果在回调中获取。
-     *
      * @param callback 拍照结果回调
      */
     void takePicture(OnTakePictureCallback callback);
 
     /**
      * 设置权限回调，当手机没有拍照权限时，可在回调中获取。
-     *
      * @param callback 权限回调
      */
     void setPermissionCallback(PermissionCallback callback);
 
     /**
      * 设置水平方向
-     *
      * @param displayOrientation 参数值见 {@link com.baidu.ocr.ui.camera.CameraView.Orientation}
      */
     void setDisplayOrientation(@CameraView.Orientation int displayOrientation);
@@ -92,36 +106,16 @@ public interface ICameraControl {
     AtomicBoolean getAbortingScan();
 
     /**
-     * 获取当前闪光灯状态
-     *
-     * @return 当前闪光灯状态 参见 {@link #setFlashMode(int)}
-     */
-    @FlashMode
-    int getFlashMode();
-
-    /**
-     * 设置闪光灯状态。
-     *
-     * @param flashMode {@link #FLASH_MODE_TORCH,#FLASH_MODE_OFF,#FLASH_MODE_AUTO}
-     */
-    void setFlashMode(@FlashMode int flashMode);
-
-    @IntDef({FLASH_MODE_TORCH, FLASH_MODE_OFF, FLASH_MODE_AUTO})
-    @interface FlashMode {
-
-    }
-
-    /**
-     * 照相回调。
-     */
-    interface OnTakePictureCallback {
-        void onPictureTaken(byte[] data);
-    }
-
-    /**
      * 预览回调
      */
     interface OnDetectPictureCallback {
         int onDetect(byte[] data, int rotation);
     }
+
+    /**
+     * 获取当前闪光灯状态
+     * @return 当前闪光灯状态 参见 {@link #setFlashMode(int)}
+     */
+    @FlashMode
+    int getFlashMode();
 }

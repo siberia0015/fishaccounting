@@ -37,6 +37,12 @@ import java.io.IOException;
 public class CameraView extends FrameLayout {
 
     /**
+     * UI线程的handler
+     */
+    Handler uiHandler = new Handler(Looper.getMainLooper());
+    private int maskType;
+
+    /**
      * 垂直方向 {@link #setOrientation(int)}
      */
     public static final int ORIENTATION_PORTRAIT = 0;
@@ -48,37 +54,46 @@ public class CameraView extends FrameLayout {
      * 水平翻转方向 {@link #setOrientation(int)}
      */
     public static final int ORIENTATION_INVERT = 270;
+
     /**
      * 本地模型授权，加载成功
      */
     public static final int NATIVE_AUTH_INIT_SUCCESS = 0;
+
     /**
      * 本地模型授权，缺少SO
      */
     public static final int NATIVE_SOLOAD_FAIL = 10;
+
     /**
      * 本地模型授权，授权失败，token异常
      */
     public static final int NATIVE_AUTH_FAIL = 11;
+
     /**
      * 本地模型授权，模型加载失败
      */
     public static final int NATIVE_INIT_FAIL = 12;
+
+
     /**
      * 是否已经通过本地质量控制扫描
      */
     private final int SCAN_SUCCESS = 0;
     /**
-     * UI线程的handler
-     */
-    Handler uiHandler = new Handler(Looper.getMainLooper());
-    private int maskType;
-    /**
-     * 本地检测初始化，模型加载标识
+     *  本地检测初始化，模型加载标识
      */
     private int initNativeStatus = NATIVE_AUTH_INIT_SUCCESS;
+    private OnTakePictureCallback autoPictureCallback;
+
+    public void setInitNativeStatus(int initNativeStatus) {
+        this.initNativeStatus = initNativeStatus;
+    }
+
     private CameraViewTakePictureCallback cameraViewTakePictureCallback = new CameraViewTakePictureCallback();
+
     private ICameraControl cameraControl;
+
     /**
      * 相机预览View
      */
@@ -87,42 +102,26 @@ public class CameraView extends FrameLayout {
      * 身份证，银行卡，等裁剪用的遮罩
      */
     private MaskView maskView;
+
     /**
      * 用于显示提示证 "请对齐身份证正面" 之类的背景
      */
     private ImageView hintView;
+
     /**
      * 用于显示提示证 "请对齐身份证正面" 之类的文字
      */
     private TextView hintViewText;
+
     /**
      * 提示文案容器
      */
     private LinearLayout hintViewTextWrapper;
+
     /**
      * 是否是本地质量控制扫描
      */
     private boolean isEnableScan;
-    private OnTakePictureCallback autoPictureCallback;
-
-    public CameraView(Context context) {
-        super(context);
-        init();
-    }
-
-    public CameraView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
-    }
-
-    public CameraView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
-    }
-
-    public void setInitNativeStatus(int initNativeStatus) {
-        this.initNativeStatus = initNativeStatus;
-    }
 
     public void setEnableScan(boolean enableScan) {
         isEnableScan = enableScan;
@@ -134,81 +133,6 @@ public class CameraView extends FrameLayout {
 
     public void setOrientation(@Orientation int orientation) {
         cameraControl.setDisplayOrientation(orientation);
-    }
-
-    public void start() {
-        cameraControl.start();
-        setKeepScreenOn(true);
-    }
-
-    public void stop() {
-        cameraControl.stop();
-        setKeepScreenOn(false);
-    }
-
-    public void takePicture(final File file, final OnTakePictureCallback callback) {
-        cameraViewTakePictureCallback.file = file;
-        cameraViewTakePictureCallback.callback = callback;
-        cameraControl.takePicture(cameraViewTakePictureCallback);
-    }
-
-    public void setAutoPictureCallback(OnTakePictureCallback callback) {
-        autoPictureCallback = callback;
-    }
-
-    public void setMaskType(@MaskView.MaskType int maskType, final Context ctx) {
-        maskView.setMaskType(maskType);
-
-        maskView.setVisibility(VISIBLE);
-        hintView.setVisibility(VISIBLE);
-
-        int hintResourceId = R.drawable.bd_ocr_hint_align_id_card;
-        this.maskType = maskType;
-        boolean isNeedSetImage = true;
-        switch (maskType) {
-            case MaskView.MASK_TYPE_ID_CARD_FRONT:
-                hintResourceId = R.drawable.bd_ocr_round_corner;
-                isNeedSetImage = false;
-                break;
-            case MaskView.MASK_TYPE_ID_CARD_BACK:
-                isNeedSetImage = false;
-                hintResourceId = R.drawable.bd_ocr_round_corner;
-                break;
-            case MaskView.MASK_TYPE_BANK_CARD:
-                hintResourceId = R.drawable.bd_ocr_hint_align_bank_card;
-                break;
-            case MaskView.MASK_TYPE_PASSPORT:
-                hintView.setVisibility(INVISIBLE);
-                break;
-            case MaskView.MASK_TYPE_NONE:
-            default:
-                maskView.setVisibility(INVISIBLE);
-                hintView.setVisibility(INVISIBLE);
-                break;
-        }
-
-        if (isNeedSetImage) {
-            hintView.setImageResource(hintResourceId);
-            hintViewTextWrapper.setVisibility(INVISIBLE);
-        }
-
-        if (maskType == MaskView.MASK_TYPE_ID_CARD_FRONT && isEnableScan) {
-            cameraControl.setDetectCallback(new ICameraControl.OnDetectPictureCallback() {
-                @Override
-                public int onDetect(byte[] data, int rotation) {
-                    return detect(data, rotation);
-                }
-            });
-        }
-
-        if (maskType == MaskView.MASK_TYPE_ID_CARD_BACK && isEnableScan) {
-            cameraControl.setDetectCallback(new ICameraControl.OnDetectPictureCallback() {
-                @Override
-                public int onDetect(byte[] data, int rotation) {
-                    return detect(data, rotation);
-                }
-            });
-        }
     }
 
     private int detect(byte[] data, final int rotation) {
@@ -351,118 +275,35 @@ public class CameraView extends FrameLayout {
         return status;
     }
 
-    private void showTipMessage(final int status) {
-        // 提示tip文字变化
-        uiHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (status == 0) {
-                    hintViewText.setVisibility(View.INVISIBLE);
-                } else if (!cameraControl.getAbortingScan().get()) {
-                    hintViewText.setVisibility(View.VISIBLE);
-                    hintViewText.setText(getScanMessage(status));
-                }
-            }
-        });
+    public CameraView(Context context) {
+        super(context);
+        init();
     }
 
-    private String getScanMessage(int status) {
-        String message;
-        switch (status) {
-            case 0:
-                message = "";
-                break;
-            case 2:
-                message = "身份证模糊，请重新尝试";
-                break;
-            case 3:
-                message = "身份证反光，请重新尝试";
-                break;
-            case 4:
-                message = "请将身份证前后反转再进行识别";
-                break;
-            case 5:
-                message = "请拿稳镜头和身份证";
-                break;
-            case 6:
-                message = "请将镜头靠近身份证";
-                break;
-            case 7:
-                message = "请将身份证完整置于取景框内";
-                break;
-            case NATIVE_AUTH_FAIL:
-                message = "本地质量控制授权失败";
-                break;
-            case NATIVE_INIT_FAIL:
-                message = "本地模型加载失败";
-                break;
-            case NATIVE_SOLOAD_FAIL:
-                message = "本地SO库加载失败";
-                break;
-            case 1:
-            default:
-                message = "请将身份证置于取景框内";
-        }
-
-
-        return message;
+    public CameraView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
     }
 
-    private void init() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            cameraControl = new Camera2Control(getContext());
-//        } else {
-//
-//        }
-        cameraControl = new Camera1Control(getContext());
-
-        displayView = cameraControl.getDisplayView();
-        addView(displayView);
-
-        maskView = new MaskView(getContext());
-        addView(maskView);
-
-        hintView = new ImageView(getContext());
-        addView(hintView);
-
-        hintViewTextWrapper = new LinearLayout(getContext());
-        hintViewTextWrapper.setOrientation(LinearLayout.VERTICAL);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
-                DimensionUtil.dpToPx(25));
-
-        lp.gravity = Gravity.CENTER;
-        hintViewText = new TextView(getContext());
-        hintViewText.setBackgroundResource(R.drawable.bd_ocr_round_corner);
-        hintViewText.setAlpha(0.5f);
-        hintViewText.setPadding(DimensionUtil.dpToPx(10), 0, DimensionUtil.dpToPx(10), 0);
-        hintViewTextWrapper.addView(hintViewText, lp);
-
-
-        hintViewText.setGravity(Gravity.CENTER);
-        hintViewText.setTextColor(Color.WHITE);
-        hintViewText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-        hintViewText.setText(getScanMessage(-1));
-
-
-        addView(hintViewTextWrapper, lp);
+    public CameraView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init();
     }
 
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        displayView.layout(left, 0, right, bottom - top);
-        maskView.layout(left, 0, right, bottom - top);
+    public void start() {
+        cameraControl.start();
+        setKeepScreenOn(true);
+    }
 
-        int hintViewWidth = DimensionUtil.dpToPx(250);
-        int hintViewHeight = DimensionUtil.dpToPx(25);
+    public void stop() {
+        cameraControl.stop();
+        setKeepScreenOn(false);
+    }
 
-        int hintViewLeft = (getWidth() - hintViewWidth) / 2;
-        int hintViewTop = maskView.getFrameRect().bottom + DimensionUtil.dpToPx(16);
-
-        hintViewTextWrapper.layout(hintViewLeft, hintViewTop,
-                hintViewLeft + hintViewWidth, hintViewTop + hintViewHeight);
-
-        hintView.layout(hintViewLeft, hintViewTop,
-                hintViewLeft + hintViewWidth, hintViewTop + hintViewHeight);
+    public void takePicture(final File file, final OnTakePictureCallback callback) {
+        cameraViewTakePictureCallback.file = file;
+        cameraViewTakePictureCallback.callback = callback;
+        cameraControl.takePicture(cameraViewTakePictureCallback);
     }
 
     /**
@@ -470,8 +311,9 @@ public class CameraView extends FrameLayout {
      * 所以需要做旋转处理。
      *
      * @param outputFile 写入照片的文件。
-     * @param data       原始照片数据。
+     * @param data  原始照片数据。
      * @param rotation   照片exif中的旋转角度。
+     *
      * @return 裁剪好的bitmap。
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -593,8 +435,63 @@ public class CameraView extends FrameLayout {
         return null;
     }
 
-    public void release() {
-        IDcardQualityProcess.getInstance().releaseModel();
+    public void setAutoPictureCallback(OnTakePictureCallback callback) {
+        autoPictureCallback = callback;
+    }
+
+    public void setMaskType(@MaskView.MaskType int maskType, final Context ctx) {
+        maskView.setMaskType(maskType);
+
+        maskView.setVisibility(VISIBLE);
+        hintView.setVisibility(VISIBLE);
+
+        int hintResourceId = R.drawable.bd_ocr_hint_align_id_card;
+        this.maskType = maskType;
+        boolean isNeedSetImage = true;
+        switch (maskType) {
+            case MaskView.MASK_TYPE_ID_CARD_FRONT:
+                hintResourceId = R.drawable.bd_ocr_round_corner;
+                isNeedSetImage = false;
+                break;
+            case MaskView.MASK_TYPE_ID_CARD_BACK:
+                isNeedSetImage = false;
+                hintResourceId = R.drawable.bd_ocr_round_corner;
+                break;
+            case MaskView.MASK_TYPE_BANK_CARD:
+                hintResourceId = R.drawable.bd_ocr_hint_align_bank_card;
+                break;
+            case MaskView.MASK_TYPE_PASSPORT:
+                hintView.setVisibility(INVISIBLE);
+                break;
+            case MaskView.MASK_TYPE_NONE:
+            default:
+                maskView.setVisibility(INVISIBLE);
+                hintView.setVisibility(INVISIBLE);
+                break;
+        }
+
+        if (isNeedSetImage) {
+            hintView.setImageResource(hintResourceId);
+            hintViewTextWrapper.setVisibility(INVISIBLE);
+        }
+
+        if (maskType == MaskView.MASK_TYPE_ID_CARD_FRONT && isEnableScan) {
+            cameraControl.setDetectCallback(new ICameraControl.OnDetectPictureCallback() {
+                @Override
+                public int onDetect(byte[] data, int rotation) {
+                    return detect(data, rotation);
+                }
+            });
+        }
+
+        if (maskType == MaskView.MASK_TYPE_ID_CARD_BACK && isEnableScan) {
+            cameraControl.setDetectCallback(new ICameraControl.OnDetectPictureCallback() {
+                @Override
+                public int onDetect(byte[] data, int rotation) {
+                    return detect(data, rotation);
+                }
+            });
+        }
     }
 
     /**
@@ -604,9 +501,127 @@ public class CameraView extends FrameLayout {
         void onPictureTaken(Bitmap bitmap);
     }
 
+    private void showTipMessage(final int status) {
+        // 提示tip文字变化
+        uiHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (status == 0) {
+                    hintViewText.setVisibility(View.INVISIBLE);
+                } else if (!cameraControl.getAbortingScan().get()) {
+                    hintViewText.setVisibility(View.VISIBLE);
+                    hintViewText.setText(getScanMessage(status));
+                }
+            }
+        });
+    }
+
+    private String getScanMessage(int status) {
+        String message;
+        switch (status) {
+            case 0:
+                message = "";
+                break;
+            case 2:
+                message = "身份证模糊，请重新尝试";
+                break;
+            case 3:
+                message = "身份证反光，请重新尝试";
+                break;
+            case 4:
+                message = "请将身份证前后反转再进行识别";
+                break;
+            case 5:
+                message = "请拿稳镜头和身份证";
+                break;
+            case 6:
+                message = "请将镜头靠近身份证";
+                break;
+            case 7:
+                message = "请将身份证完整置于取景框内";
+                break;
+            case NATIVE_AUTH_FAIL:
+                message = "本地质量控制授权失败";
+                break;
+            case NATIVE_INIT_FAIL:
+                message = "本地模型加载失败";
+                break;
+            case NATIVE_SOLOAD_FAIL:
+                message = "本地SO库加载失败";
+                break;
+            case 1:
+            default:
+                message = "请将身份证置于取景框内";
+        }
+
+
+        return message;
+    }
+
+    private void init() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            cameraControl = new Camera2Control(getContext());
+//        } else {
+//
+//        }
+        cameraControl = new Camera1Control(getContext());
+
+        displayView = cameraControl.getDisplayView();
+        addView(displayView);
+
+        maskView = new MaskView(getContext());
+        addView(maskView);
+
+        hintView = new ImageView(getContext());
+        addView(hintView);
+
+        hintViewTextWrapper = new LinearLayout(getContext());
+        hintViewTextWrapper.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
+                DimensionUtil.dpToPx(25));
+
+        lp.gravity = Gravity.CENTER;
+        hintViewText = new TextView(getContext());
+        hintViewText.setBackgroundResource(R.drawable.bd_ocr_round_corner);
+        hintViewText.setAlpha(0.5f);
+        hintViewText.setPadding(DimensionUtil.dpToPx(10), 0, DimensionUtil.dpToPx(10), 0);
+        hintViewTextWrapper.addView(hintViewText, lp);
+
+
+        hintViewText.setGravity(Gravity.CENTER);
+        hintViewText.setTextColor(Color.WHITE);
+        hintViewText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        hintViewText.setText(getScanMessage(-1));
+
+
+        addView(hintViewTextWrapper, lp);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        displayView.layout(left, 0, right, bottom - top);
+        maskView.layout(left, 0, right, bottom - top);
+
+        int hintViewWidth = DimensionUtil.dpToPx(250);
+        int hintViewHeight = DimensionUtil.dpToPx(25);
+
+        int hintViewLeft = (getWidth() - hintViewWidth) / 2;
+        int hintViewTop = maskView.getFrameRect().bottom + DimensionUtil.dpToPx(16);
+
+        hintViewTextWrapper.layout(hintViewLeft, hintViewTop,
+                hintViewLeft + hintViewWidth, hintViewTop + hintViewHeight);
+
+        hintView.layout(hintViewLeft, hintViewTop,
+                hintViewLeft + hintViewWidth, hintViewTop + hintViewHeight);
+    }
+
     @IntDef({ORIENTATION_PORTRAIT, ORIENTATION_HORIZONTAL, ORIENTATION_INVERT})
     public @interface Orientation {
 
+    }
+
+    public void release() {
+        IDcardQualityProcess.getInstance().releaseModel();
     }
 
     private class CameraViewTakePictureCallback implements ICameraControl.OnTakePictureCallback {

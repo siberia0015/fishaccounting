@@ -21,20 +21,6 @@ import com.baidu.ocr.ui.util.DimensionUtil;
 
 public class FrameOverlayView extends View {
 
-    private static final int CORNER_LEFT_TOP = 1;
-    private static final int CORNER_RIGHT_TOP = 2;
-    private static final int CORNER_RIGHT_BOTTOM = 3;
-    private static final int CORNER_LEFT_BOTTOM = 4;
-    int margin = 20;
-    int cornerLength = 100;
-    int cornerLineWidth = 6;
-    private int currentCorner = -1;
-    private int maskColor = Color.argb(180, 0, 0, 0);
-    private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Paint eraser = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private GestureDetector gestureDetector;
-    private RectF touchRect = new RectF();
-    private RectF frameRect = new RectF();
     private GestureDetector.SimpleOnGestureListener onGestureListener = new GestureDetector.SimpleOnGestureListener() {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
@@ -43,17 +29,8 @@ public class FrameOverlayView extends View {
         }
 
     };
-    private OnFrameChangeListener onFrameChangeListener;
+    private int currentCorner = -1;
     private int shapeType = 0;
-
-    {
-        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        paint.setColor(Color.WHITE);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(6);
-
-        eraser.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-    }
 
     public FrameOverlayView(Context context) {
         super(context);
@@ -70,6 +47,11 @@ public class FrameOverlayView extends View {
         init();
     }
 
+    private static final int CORNER_LEFT_TOP = 1;
+    private static final int CORNER_RIGHT_TOP = 2;
+    private static final int CORNER_RIGHT_BOTTOM = 3;
+    private static final int CORNER_LEFT_BOTTOM = 4;
+
     public Rect getFrameRect() {
         Rect rect = new Rect();
         rect.left = (int) frameRect.left;
@@ -77,6 +59,29 @@ public class FrameOverlayView extends View {
         rect.right = (int) frameRect.right;
         rect.bottom = (int) frameRect.bottom;
         return rect;
+    }
+
+    int margin = 20;
+    int cornerLength = 100;
+    int cornerLineWidth = 6;
+
+    private int maskColor = Color.argb(180, 0, 0, 0);
+
+    private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint eraser = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private GestureDetector gestureDetector;
+    private RectF touchRect = new RectF();
+    private RectF frameRect = new RectF();
+
+    private OnFrameChangeListener onFrameChangeListener;
+
+    {
+        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        paint.setColor(Color.WHITE);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(6);
+
+        eraser.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     public void setOnFrameChangeListener(OnFrameChangeListener onFrameChangeListener) {
@@ -107,9 +112,14 @@ public class FrameOverlayView extends View {
         frameRect.bottom = h - frameRect.top;
     }
 
+    interface OnFrameChangeListener {
+        void onFrameChange(RectF newFrame);
+    }
+
     public void setTypeWide() {
         shapeType = 1;
     }
+
 
     private void translate(float x, float y) {
         if (x > 0) {
@@ -274,9 +284,5 @@ public class FrameOverlayView extends View {
 
     private float getMinimumFrameHeight() {
         return 2.4f * cornerLength;
-    }
-
-    interface OnFrameChangeListener {
-        void onFrameChange(RectF newFrame);
     }
 }

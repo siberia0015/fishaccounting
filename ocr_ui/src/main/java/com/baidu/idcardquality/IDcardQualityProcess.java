@@ -14,12 +14,6 @@ import com.baidu.idl.util.UIThread;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class IDcardQualityProcess {
-    private static IDcardQualityProcess mInstance;
-    private static String tokenString;
-    private static int mAuthorityStatus;
-    private static Throwable loadNativeException = null;
-    private static volatile boolean hasReleased;
-
     static {
         try {
             System.loadLibrary("idl_license");
@@ -31,7 +25,11 @@ public class IDcardQualityProcess {
         mAuthorityStatus = 256;
     }
 
-    final ReentrantReadWriteLock nativeModelLock = new ReentrantReadWriteLock();
+    private static IDcardQualityProcess mInstance;
+    private static String tokenString;
+    private static int mAuthorityStatus;
+    private static Throwable loadNativeException = null;
+    private static volatile boolean hasReleased;
 
     public IDcardQualityProcess() {
     }
@@ -43,6 +41,16 @@ public class IDcardQualityProcess {
 
         return mInstance;
     }
+
+    final ReentrantReadWriteLock nativeModelLock = new ReentrantReadWriteLock();
+
+    public static Throwable getLoadSoException() {
+        return loadNativeException;
+    }
+
+    public native byte[] convertRGBImage(int[] colors, int width, int height);
+
+    public native int idcardQualityModelInit(AssetManager var1, String var2);
 
     public static synchronized int init(String token) throws AlgorithmOnMainThreadException, IDLAuthorityException {
         if (UIThread.isUITread()) {
@@ -59,18 +67,6 @@ public class IDcardQualityProcess {
             return mAuthorityStatus;
         }
     }
-
-    public static Throwable getLoadSoException() {
-        return loadNativeException;
-    }
-
-    public native byte[] convertRGBImage(int[] colors, int width, int height);
-
-    public native int idcardQualityModelInit(AssetManager var1, String var2);
-
-    public native int idcardQualityCaptchaRelease();
-
-    public native int idcardQualityProcess(byte[] var1, int var2, int var3, boolean var4, int var5);
 
     public int idcardQualityInit(AssetManager assetManager, String modelPath) {
         if (mAuthorityStatus == 0) {
@@ -114,6 +110,8 @@ public class IDcardQualityProcess {
         }
     }
 
+    public native int idcardQualityCaptchaRelease();
+
     public byte[] getRGBImageData(Bitmap img) {
         int imgWidth = img.getWidth();
         int imgHeight = img.getHeight();
@@ -126,4 +124,6 @@ public class IDcardQualityProcess {
     public void releaseModel() {
         this.idcardQualityRelease();
     }
+
+    public native int idcardQualityProcess(byte[] var1, int var2, int var3, boolean var4, int var5);
 }

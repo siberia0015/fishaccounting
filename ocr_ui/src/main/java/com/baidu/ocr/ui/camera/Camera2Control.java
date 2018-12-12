@@ -51,19 +51,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class Camera2Control implements ICameraControl {
-    /**
-     * Conversion from screen rotation to JPEG orientation.
-     */
-    private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
-    private static final int MAX_PREVIEW_SIZE = 2048;
-    private static final int STATE_PREVIEW = 0;
-    private static final int STATE_WAITING_FOR_LOCK = 1;
-    private static final int STATE_WAITING_FOR_CAPTURE = 2;
-    private static final int STATE_CAPTURING = 3;
-    private static final int STATE_PICTURE_TAKEN = 4;
-    private static final int MAX_PREVIEW_WIDTH = 1920;
-    private static final int MAX_PREVIEW_HEIGHT = 1080;
-
     static {
         ORIENTATIONS.append(Surface.ROTATION_0, 90);
         ORIENTATIONS.append(Surface.ROTATION_90, 0);
@@ -71,11 +58,6 @@ public class Camera2Control implements ICameraControl {
         ORIENTATIONS.append(Surface.ROTATION_270, 180);
     }
 
-    private int flashMode;
-    private int orientation = 0;
-    private int state = STATE_PREVIEW;
-    private Context context;
-    private OnTakePictureCallback onTakePictureCallback;
     private final ImageReader.OnImageAvailableListener onImageAvailableListener =
             new ImageReader.OnImageAvailableListener() {
                 @Override
@@ -91,20 +73,12 @@ public class Camera2Control implements ICameraControl {
                     }
                 }
             };
-    private PermissionCallback permissionCallback;
-    private String cameraId;
-    private TextureView textureView;
-    private Size previewSize;
-    private Rect previewFrame = new Rect();
-    private HandlerThread backgroundThread;
-    private Handler backgroundHandler;
-    private ImageReader imageReader;
-    private CameraCaptureSession captureSession;
-    private CameraDevice cameraDevice;
-    private CaptureRequest.Builder previewRequestBuilder;
-    private CaptureRequest previewRequest;
-    private Semaphore cameraLock = new Semaphore(1);
-    private int sensorOrientation;
+
+    /**
+     * Conversion from screen rotation to JPEG orientation.
+     */
+    private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
+    private static final int MAX_PREVIEW_SIZE = 2048;
     private CameraCaptureSession.CaptureCallback captureCallback =
             new CameraCaptureSession.CaptureCallback() {
                 private void process(CaptureResult result) {
@@ -176,76 +150,40 @@ public class Camera2Control implements ICameraControl {
                 }
 
             };
-    private final CameraDevice.StateCallback deviceStateCallback = new CameraDevice.StateCallback() {
-        @Override
-        public void onOpened(@NonNull CameraDevice cameraDevice) {
-            cameraLock.release();
-            Camera2Control.this.cameraDevice = cameraDevice;
-            createCameraPreviewSession();
-        }
 
-        @Override
-        public void onDisconnected(@NonNull CameraDevice cameraDevice) {
-            cameraLock.release();
-            cameraDevice.close();
-            Camera2Control.this.cameraDevice = null;
-        }
+    private static final int STATE_PREVIEW = 0;
+    private static final int STATE_WAITING_FOR_LOCK = 1;
+    private static final int STATE_WAITING_FOR_CAPTURE = 2;
+    private static final int STATE_CAPTURING = 3;
+    private static final int STATE_PICTURE_TAKEN = 4;
 
-        @Override
-        public void onError(@NonNull CameraDevice cameraDevice, int error) {
-            cameraLock.release();
-            cameraDevice.close();
-            Camera2Control.this.cameraDevice = null;
-        }
-    };
-    private Comparator<Size> sizeComparator = new Comparator<Size>() {
-        @Override
-        public int compare(Size lhs, Size rhs) {
-            return Long.signum((long) lhs.getWidth() * lhs.getHeight() - (long) rhs.getWidth() * rhs.getHeight());
-        }
-    };
-    private final TextureView.SurfaceTextureListener surfaceTextureListener =
-            new TextureView.SurfaceTextureListener() {
-                @Override
-                public void onSurfaceTextureAvailable(SurfaceTexture texture, int width, int height) {
-                    openCamera(width, height);
-                }
+    private static final int MAX_PREVIEW_WIDTH = 1920;
+    private static final int MAX_PREVIEW_HEIGHT = 1080;
 
-                @Override
-                public void onSurfaceTextureSizeChanged(SurfaceTexture texture, int width, int height) {
-                    configureTransform(width, height);
-                    previewFrame.left = 0;
-                    previewFrame.top = 0;
-                    previewFrame.right = width;
-                    previewFrame.bottom = height;
-                }
+    private int flashMode;
+    private int orientation = 0;
+    private int state = STATE_PREVIEW;
 
-                @Override
-                public boolean onSurfaceTextureDestroyed(SurfaceTexture texture) {
-                    stop();
-                    return true;
-                }
+    private Context context;
+    private OnTakePictureCallback onTakePictureCallback;
+    private PermissionCallback permissionCallback;
 
-                @Override
-                public void onSurfaceTextureUpdated(SurfaceTexture texture) {
-                }
-            };
+    private String cameraId;
+    private TextureView textureView;
+    private Size previewSize;
+    private Rect previewFrame = new Rect();
 
-    public Camera2Control(Context activity) {
-        this.context = activity;
-        textureView = new TextureView(activity);
-    }
+    private HandlerThread backgroundThread;
+    private Handler backgroundHandler;
+    private ImageReader imageReader;
+    private CameraCaptureSession captureSession;
+    private CameraDevice cameraDevice;
 
-    @Override
-    public void setDetectCallback(OnDetectPictureCallback callback) {
-        // TODO 暂时只用camera
-    }
+    private CaptureRequest.Builder previewRequestBuilder;
+    private CaptureRequest previewRequest;
 
-    @Override
-    public AtomicBoolean getAbortingScan() {
-        // TODO 暂时只用camera
-        return null;
-    }
+    private Semaphore cameraLock = new Semaphore(1);
+    private int sensorOrientation;
 
     @Override
     public void start() {
@@ -308,11 +246,6 @@ public class Camera2Control implements ICameraControl {
     }
 
     @Override
-    public int getFlashMode() {
-        return flashMode;
-    }
-
-    @Override
     public void setFlashMode(@FlashMode int flashMode) {
         if (this.flashMode == flashMode) {
             return;
@@ -328,6 +261,61 @@ public class Camera2Control implements ICameraControl {
             e.printStackTrace();
         }
     }
+
+    private final CameraDevice.StateCallback deviceStateCallback = new CameraDevice.StateCallback() {
+        @Override
+        public void onOpened(@NonNull CameraDevice cameraDevice) {
+            cameraLock.release();
+            Camera2Control.this.cameraDevice = cameraDevice;
+            createCameraPreviewSession();
+        }
+
+        @Override
+        public void onDisconnected(@NonNull CameraDevice cameraDevice) {
+            cameraLock.release();
+            cameraDevice.close();
+            Camera2Control.this.cameraDevice = null;
+        }
+
+        @Override
+        public void onError(@NonNull CameraDevice cameraDevice, int error) {
+            cameraLock.release();
+            cameraDevice.close();
+            Camera2Control.this.cameraDevice = null;
+        }
+    };
+    private Comparator<Size> sizeComparator = new Comparator<Size>() {
+        @Override
+        public int compare(Size lhs, Size rhs) {
+            return Long.signum((long) lhs.getWidth() * lhs.getHeight() - (long) rhs.getWidth() * rhs.getHeight());
+        }
+    };
+    private final TextureView.SurfaceTextureListener surfaceTextureListener =
+            new TextureView.SurfaceTextureListener() {
+                @Override
+                public void onSurfaceTextureAvailable(SurfaceTexture texture, int width, int height) {
+                    openCamera(width, height);
+                }
+
+                @Override
+                public void onSurfaceTextureSizeChanged(SurfaceTexture texture, int width, int height) {
+                    configureTransform(width, height);
+                    previewFrame.left = 0;
+                    previewFrame.top = 0;
+                    previewFrame.right = width;
+                    previewFrame.bottom = height;
+                }
+
+                @Override
+                public boolean onSurfaceTextureDestroyed(SurfaceTexture texture) {
+                    stop();
+                    return true;
+                }
+
+                @Override
+                public void onSurfaceTextureUpdated(SurfaceTexture texture) {
+                }
+            };
 
     private void openCamera(int width, int height) {
         // 6.0+的系统需要检查系统权限 。
@@ -349,6 +337,11 @@ public class Camera2Control implements ICameraControl {
         } catch (InterruptedException e) {
             throw new RuntimeException("Interrupted while trying to lock camera opening.", e);
         }
+    }
+
+    public Camera2Control(Context activity) {
+        this.context = activity;
+        textureView = new TextureView(activity);
     }
 
     private void createCameraPreviewSession() {
@@ -393,6 +386,17 @@ public class Camera2Control implements ICameraControl {
         }
     }
 
+    @Override
+    public void setDetectCallback(OnDetectPictureCallback callback) {
+        // TODO 暂时只用camera
+    }
+
+    @Override
+    public AtomicBoolean getAbortingScan() {
+        // TODO 暂时只用camera
+        return null;
+    }
+
     private Size getOptimalSize(Size[] choices, int textureViewWidth,
                                 int textureViewHeight, int maxWidth, int maxHeight, Size aspectRatio) {
         List<Size> bigEnough = new ArrayList<>();
@@ -428,6 +432,11 @@ public class Camera2Control implements ICameraControl {
         }
 
         return choices[0];
+    }
+
+    @Override
+    public int getFlashMode() {
+        return flashMode;
     }
 
     private void requestCameraPermission() {

@@ -10,11 +10,13 @@ import java.util.concurrent.Executors;
 
 public class CameraThreadPool {
 
+    static Timer timerFocus = null;
+
     /*
      * 对焦频率
      */
     static final long cameraScanInterval = 2000;
-    static Timer timerFocus = null;
+
     /*
      * 线程池大小
      */
@@ -24,7 +26,6 @@ public class CameraThreadPool {
 
     /**
      * 给线程池添加任务
-     *
      * @param runnable 任务
      */
     public static void execute(Runnable runnable) {
@@ -33,7 +34,6 @@ public class CameraThreadPool {
 
     /**
      * 创建一个定时对焦的timer任务
-     *
      * @param runnable 对焦代码
      * @return Timer Timer对象，用来终止自动对焦
      */
@@ -55,6 +55,7 @@ public class CameraThreadPool {
     /**
      * 终止自动对焦任务，实际调用了cancel方法并且清空对象
      * 但是无法终止执行中的任务，需额外处理
+     *
      */
     public static void cancelAutoFocusTimer() {
         if (timerFocus != null) {

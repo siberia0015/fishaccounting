@@ -24,36 +24,6 @@ import java.io.IOException;
 
 public class CropView extends View {
 
-    int rotation = 0;
-    private float setMinimumScale = 0.2f;
-    private float maximumScale = 4.0f;
-    private float[] matrixArray = new float[9];
-    private Matrix matrix = new Matrix();
-    private Bitmap bitmap;
-    private GestureDetector gestureDetector;
-    private ScaleGestureDetector scaleGestureDetector;
-    private ScaleGestureDetector.OnScaleGestureListener onScaleGestureListener =
-            new ScaleGestureDetector.OnScaleGestureListener() {
-                @Override
-                public boolean onScale(ScaleGestureDetector detector) {
-                    scale(detector);
-                    return true;
-                }
-
-                @Override
-                public boolean onScaleBegin(ScaleGestureDetector detector) {
-                    return true;
-                }
-
-                @Override
-                public void onScaleEnd(ScaleGestureDetector detector) {
-                    float scale = detector.getScaleFactor();
-                    matrix.postScale(scale, scale);
-                    invalidate();
-                }
-            };
-    private Rect restrictBound;
-
     public CropView(Context context) {
         super(context);
         init();
@@ -135,28 +105,7 @@ public class CropView extends View {
         invalidate();
     }
 
-    public Bitmap crop(Rect frame) {
-        float scale = getScale();
-
-        float[] src = new float[]{frame.left, frame.top};
-        float[] desc = new float[]{0, 0};
-
-        Matrix invertedMatrix = new Matrix();
-        this.matrix.invert(invertedMatrix);
-        invertedMatrix.mapPoints(desc, src);
-
-        Matrix matrix = new Matrix();
-
-        int width = (int) (frame.width() / scale);
-        int height = (int) (frame.height() / scale);
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-        Canvas canvas = new Canvas(bitmap);
-
-        Bitmap originalBitmap = this.bitmap;
-        matrix.postTranslate(-desc[0], -desc[1]);
-        canvas.drawBitmap(originalBitmap, matrix, null);
-        return bitmap;
-    }
+    int rotation = 0;
 
     public void setMinimumScale(float setMinimumScale) {
         this.setMinimumScale = setMinimumScale;
@@ -165,6 +114,37 @@ public class CropView extends View {
     public void setMaximumScale(float maximumScale) {
         this.maximumScale = maximumScale;
     }
+
+    private float setMinimumScale = 0.2f;
+    private float maximumScale = 4.0f;
+
+    private float[] matrixArray = new float[9];
+    private Matrix matrix = new Matrix();
+    private Bitmap bitmap;
+
+    private GestureDetector gestureDetector;
+
+    private ScaleGestureDetector scaleGestureDetector;
+    private ScaleGestureDetector.OnScaleGestureListener onScaleGestureListener =
+            new ScaleGestureDetector.OnScaleGestureListener() {
+                @Override
+                public boolean onScale(ScaleGestureDetector detector) {
+                    scale(detector);
+                    return true;
+                }
+
+                @Override
+                public boolean onScaleBegin(ScaleGestureDetector detector) {
+                    return true;
+                }
+
+                @Override
+                public void onScaleEnd(ScaleGestureDetector detector) {
+                    float scale = detector.getScaleFactor();
+                    matrix.postScale(scale, scale);
+                    invalidate();
+                }
+            };
 
     private void init() {
         scaleGestureDetector = new ScaleGestureDetector(getContext(), onScaleGestureListener);
@@ -199,6 +179,8 @@ public class CropView extends View {
             }
         });
     }
+
+    private Rect restrictBound;
 
     public void rotate(int degrees) {
         if (this.bitmap == null) {
@@ -308,6 +290,29 @@ public class CropView extends View {
         boolean result = scaleGestureDetector.onTouchEvent(event);
         result = gestureDetector.onTouchEvent(event) || result;
         return result || super.onTouchEvent(event);
+    }
+
+    public Bitmap crop(Rect frame) {
+        float scale = getScale();
+
+        float[] src = new float[]{frame.left, frame.top};
+        float[] desc = new float[]{0, 0};
+
+        Matrix invertedMatrix = new Matrix();
+        this.matrix.invert(invertedMatrix);
+        invertedMatrix.mapPoints(desc, src);
+
+        Matrix matrix = new Matrix();
+
+        int width = (int) (frame.width() / scale);
+        int height = (int) (frame.height() / scale);
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+        Canvas canvas = new Canvas(bitmap);
+
+        Bitmap originalBitmap = this.bitmap;
+        matrix.postTranslate(-desc[0], -desc[1]);
+        canvas.drawBitmap(originalBitmap, matrix, null);
+        return bitmap;
     }
 
     private Rect getRestrictedBound() {

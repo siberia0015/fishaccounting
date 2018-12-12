@@ -13,6 +13,16 @@ import com.baidu.idcardquality.IDcardQualityProcess;
 
 public class CameraNativeHelper {
 
+    public interface CameraNativeInitCallback {
+        /**
+         * 加载本地库异常回调
+         *
+         * @param errorCode 错误代码
+         * @param e         如果加载so异常则会有异常对象传入
+         */
+        void onError(int errorCode, Throwable e);
+    }
+
     public static void init(final Context ctx, final String token, final CameraNativeInitCallback cb) {
         CameraThreadPool.execute(new Runnable() {
             @Override
@@ -45,15 +55,5 @@ public class CameraNativeHelper {
 
     public static void release() {
         IDcardQualityProcess.getInstance().releaseModel();
-    }
-
-    public interface CameraNativeInitCallback {
-        /**
-         * 加载本地库异常回调
-         *
-         * @param errorCode 错误代码
-         * @param e         如果加载so异常则会有异常对象传入
-         */
-        void onError(int errorCode, Throwable e);
     }
 }

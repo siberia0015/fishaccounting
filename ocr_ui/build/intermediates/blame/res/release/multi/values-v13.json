@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/wenyiqian/Downloads/FishAccounting/ocr_ui/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v13/values-v13.xml",
+        "outputFile": "/Users/eventide/OneDrive/文档/Git/fishaccounting/ocr_ui/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v13/values-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 109
                 },
                 "from": {
-                    "file": "/Users/wenyiqian/.android/build-cache/ceb2a9da77c3bf56292ef404aca9ff286371d7a6/output/res/values-v13/values-v13.xml",
+                    "file": "/Users/eventide/.android/build-cache/ec531764e1f0eaaeeb7bc4aa587445bd5b1cfbac/output/res/values-v13/values-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

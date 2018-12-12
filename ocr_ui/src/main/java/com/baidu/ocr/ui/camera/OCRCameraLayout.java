@@ -31,17 +31,8 @@ public class OCRCameraLayout extends FrameLayout {
     private int centerViewId;
     private int leftDownViewId;
     private int rightUpViewId;
+
     private Rect backgroundRect = new Rect();
-    private Paint paint = new Paint();
-
-    {
-        setWillNotDraw(false);
-    }
-
-    {
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.argb(83, 0, 0, 0));
-    }
 
     public OCRCameraLayout(Context context) {
         super(context);
@@ -57,13 +48,7 @@ public class OCRCameraLayout extends FrameLayout {
         parseAttrs(attrs);
     }
 
-    public void setOrientation(int orientation) {
-        if (this.orientation == orientation) {
-            return;
-        }
-        this.orientation = orientation;
-        requestLayout();
-    }
+    private Paint paint = new Paint();
 
     private void parseAttrs(AttributeSet attrs) {
         TypedArray a = getContext().getTheme().obtainStyledAttributes(
@@ -89,6 +74,23 @@ public class OCRCameraLayout extends FrameLayout {
         }
         leftDownView = findViewById(leftDownViewId);
         rightUpView = findViewById(rightUpViewId);
+    }
+
+    {
+        setWillNotDraw(false);
+    }
+
+    {
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.argb(83, 0, 0, 0));
+    }
+
+    public void setOrientation(int orientation) {
+        if (this.orientation == orientation) {
+            return;
+        }
+        this.orientation = orientation;
+        requestLayout();
     }
 
     @Override

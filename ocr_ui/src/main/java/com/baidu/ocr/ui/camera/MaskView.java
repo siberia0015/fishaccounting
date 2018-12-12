@@ -31,14 +31,7 @@ public class MaskView extends View {
     public static final int MASK_TYPE_ID_CARD_BACK = 2;
     public static final int MASK_TYPE_BANK_CARD = 11;
     public static final int MASK_TYPE_PASSPORT = 21;
-    private int lineColor = Color.WHITE;
-    private int maskType = MASK_TYPE_ID_CARD_FRONT;
-    private int maskColor = Color.argb(100, 0, 0, 0);
-    private Paint eraser = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Paint pen = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Rect frame = new Rect();
-    private Rect framePassport = new Rect();
-    private Drawable locatorDrawable;
+
     private Path path = new Path();
 
     {
@@ -57,23 +50,20 @@ public class MaskView extends View {
         init();
     }
 
-    public MaskView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
-    }
+    private int lineColor = Color.WHITE;
 
-    public MaskView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
-    }
+    private int maskType = MASK_TYPE_ID_CARD_FRONT;
 
-    public void setLineColor(int lineColor) {
-        this.lineColor = lineColor;
-    }
+    private int maskColor = Color.argb(100, 0, 0, 0);
 
-    public void setMaskColor(int maskColor) {
-        this.maskColor = maskColor;
-    }
+    private Paint eraser = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint pen = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+    private Rect frame = new Rect();
+
+    private Rect framePassport = new Rect();
+
+    private Drawable locatorDrawable;
 
     public Rect getFrameRect() {
         if (maskType == MASK_TYPE_NONE) {
@@ -95,10 +85,6 @@ public class MaskView extends View {
         rc.top -= heightExtend;
         rc.bottom += heightExtend;
         return rc;
-    }
-
-    public int getMaskType() {
-        return maskType;
     }
 
     public void setMaskType(@MaskType int maskType) {
@@ -125,7 +111,25 @@ public class MaskView extends View {
         invalidate();
     }
 
+    public MaskView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
     public void setOrientation(@CameraView.Orientation int orientation) {
+    }
+
+    public MaskView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    public void setLineColor(int lineColor) {
+        this.lineColor = lineColor;
+    }
+
+    public void setMaskColor(int maskColor) {
+        this.maskColor = maskColor;
     }
 
     private void init() {
@@ -216,6 +220,10 @@ public class MaskView extends View {
         }
     }
 
+    public int getMaskType() {
+        return maskType;
+    }
+
     private Path fillRectRound(float left, float top, float right, float bottom, float rx, float ry, boolean
             conformToOriginalPost) {
 
@@ -258,13 +266,13 @@ public class MaskView extends View {
         return path;
     }
 
-    private void capture(File file) {
-
-    }
-
     @IntDef({MASK_TYPE_NONE, MASK_TYPE_ID_CARD_FRONT, MASK_TYPE_ID_CARD_BACK, MASK_TYPE_BANK_CARD,
             MASK_TYPE_PASSPORT})
     @interface MaskType {
+
+    }
+
+    private void capture(File file) {
 
     }
 }

@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/wenyiqian/Downloads/FishAccounting/ocr_ui/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v12/values-v12.xml",
+        "outputFile": "/Users/eventide/OneDrive/文档/Git/fishaccounting/ocr_ui/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v12/values-v12.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 274
                 },
                 "from": {
-                    "file": "/Users/wenyiqian/.android/build-cache/ceb2a9da77c3bf56292ef404aca9ff286371d7a6/output/res/values-v12/values-v12.xml",
+                    "file": "/Users/eventide/.android/build-cache/ec531764e1f0eaaeeb7bc4aa587445bd5b1cfbac/output/res/values-v12/values-v12.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -33,7 +33,7 @@
                     "endOffset": 474
                 },
                 "from": {
-                    "file": "/Users/wenyiqian/.android/build-cache/ceb2a9da77c3bf56292ef404aca9ff286371d7a6/output/res/values-v12/values-v12.xml",
+                    "file": "/Users/eventide/.android/build-cache/ec531764e1f0eaaeeb7bc4aa587445bd5b1cfbac/output/res/values-v12/values-v12.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -53,7 +53,7 @@
                     "endOffset": 593
                 },
                 "from": {
-                    "file": "/Users/wenyiqian/.android/build-cache/ceb2a9da77c3bf56292ef404aca9ff286371d7a6/output/res/values-v12/values-v12.xml",
+                    "file": "/Users/eventide/.android/build-cache/ec531764e1f0eaaeeb7bc4aa587445bd5b1cfbac/output/res/values-v12/values-v12.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -72,7 +72,7 @@
                     "endOffset": 688
                 },
                 "from": {
-                    "file": "/Users/wenyiqian/.android/build-cache/ceb2a9da77c3bf56292ef404aca9ff286371d7a6/output/res/values-v12/values-v12.xml",
+                    "file": "/Users/eventide/.android/build-cache/ec531764e1f0eaaeeb7bc4aa587445bd5b1cfbac/output/res/values-v12/values-v12.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
