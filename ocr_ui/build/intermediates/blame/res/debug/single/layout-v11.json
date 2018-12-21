@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/eventide/OneDrive/文档/Git/fishaccounting/ocr_ui/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_narrow_custom.xml",
+        "source": "/Users/eventide/.android/build-cache/ec531764e1f0eaaeeb7bc4aa587445bd5b1cfbac/output/res/layout-v11/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/Users/eventide/OneDrive/文档/Git/fishaccounting/ocr_ui/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_narrow.xml",
+        "source": "/Users/eventide/.android/build-cache/ec531764e1f0eaaeeb7bc4aa587445bd5b1cfbac/output/res/layout-v11/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/eventide/OneDrive/文档/Git/fishaccounting/ocr_ui/build/intermediates/res/merged/debug/layout-v11/notification_media_action.xml",
+        "source": "/Users/eventide/.android/build-cache/ec531764e1f0eaaeeb7bc4aa587445bd5b1cfbac/output/res/layout-v11/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/eventide/OneDrive/文档/Git/fishaccounting/ocr_ui/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media.xml",
+        "source": "/Users/eventide/.android/build-cache/ec531764e1f0eaaeeb7bc4aa587445bd5b1cfbac/output/res/layout-v11/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/Users/eventide/OneDrive/文档/Git/fishaccounting/ocr_ui/build/intermediates/res/merged/debug/layout-v11/notification_media_cancel_action.xml",
+        "source": "/Users/eventide/.android/build-cache/ec531764e1f0eaaeeb7bc4aa587445bd5b1cfbac/output/res/layout-v11/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/eventide/OneDrive/文档/Git/fishaccounting/ocr_ui/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_custom.xml",
+        "source": "/Users/eventide/.android/build-cache/ec531764e1f0eaaeeb7bc4aa587445bd5b1cfbac/output/res/layout-v11/notification_template_big_media_custom.xml"
+    }
+]

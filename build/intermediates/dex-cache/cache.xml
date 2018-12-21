@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/eventide/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="/Users/eventide/Downloads/FishAccounting 3/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.8.0_3ea03718e2f9d0fe3129d1369ecda63d34bf37ba/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/eventide/Downloads/FishAccounting 3/ocr_ui/build/intermediates/bundles/default/libs/license.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="eca3cb381d01815bb3cec10d215f5d6ba1b2308d">
+        <dex dex="/Users/eventide/Downloads/FishAccounting 3/app/build/intermediates/transforms/dex/debug/folders/1000/8/license_fc74cdb5c6270664651cce931aaeb6adc3a702ec/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/eventide/OneDrive/文档/Git/fishaccounting/ocr_ui/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c953297d9d09303258e3cb7c880fd0f1f53d9ad0">
+        <dex dex="/Users/eventide/OneDrive/文档/Git/fishaccounting/app/build/intermediates/transforms/dex/debug/folders/1000/4/classes_b4a9221653184f0754c2b76365b357918fba9130/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/eventide/Downloads/FishAccounting 3/app/libs/ocr-sdk.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c27414b0aaebf138ad149373556fbac40b85a633">
+        <dex dex="/Users/eventide/Downloads/FishAccounting 3/app/build/intermediates/transforms/dex/debug/folders/1000/2/ocr-sdk_e5807fad538ae1a38a7608ebd4f7300a2691e869/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/eventide/OneDrive/文档/Git/fishaccounting/ocr_ui/build/intermediates/bundles/default/libs/license.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="eca3cb381d01815bb3cec10d215f5d6ba1b2308d">
+        <dex dex="/Users/eventide/OneDrive/文档/Git/fishaccounting/app/build/intermediates/transforms/dex/debug/folders/1000/8/license_51138d2d53abae79e0762d080d5eae5cc98b344a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/eventide/OneDrive/文档/Git/fishaccounting/app/libs/ocr-sdk.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c27414b0aaebf138ad149373556fbac40b85a633">
+        <dex dex="/Users/eventide/OneDrive/文档/Git/fishaccounting/app/build/intermediates/transforms/dex/debug/folders/1000/2/ocr-sdk_e898d4f74b2a83eee7a02b5b4dc7cfba81fe0935/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/eventide/Downloads/FishAccounting 3/ocr_ui/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c953297d9d09303258e3cb7c880fd0f1f53d9ad0">
+        <dex dex="/Users/eventide/Downloads/FishAccounting 3/app/build/intermediates/transforms/dex/debug/folders/1000/4/classes_12d51a9e68bfc599022dc65a75f89435beaf7483/classes.dex" />
+    </item>
+
+</items>
